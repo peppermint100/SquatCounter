@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct SquatCounterApp: App {
+    
+    @AppStorage(UserDefaultsKey.hasUserOnBoarded) private var hasUserOnBoarded = UserDefaults.standard.bool(forKey: UserDefaultsKey.hasUserOnBoarded)
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if hasUserOnBoarded {
+                ContentView()
+            } else {
+                OnBoardingView()
+            }
         }
     }
 }
