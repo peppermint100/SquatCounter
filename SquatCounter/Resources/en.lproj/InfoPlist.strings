@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  SquatCounter
+
+  Created by peppermint100 on 7/10/24.
+  
+*/
+
+"NSMotionUsageDescription" = "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.";
+"NSBluetoothAlwaysUsageDescription" = "Bluetooth permission is required for exercising with AirPods.";

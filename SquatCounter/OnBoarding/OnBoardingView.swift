@@ -9,6 +9,12 @@ import SwiftUI
 
 struct OnBoardingView: View {
     
+    @ObservedObject private var vm: OnBoardingViewModel
+    
+    init(vm: OnBoardingViewModel) {
+        self.vm = vm
+    }
+    
     var body: some View {
         ZStack {
             R.color.backgroundColor.color
@@ -43,7 +49,7 @@ struct OnBoardingView: View {
 }
 
 #Preview {
-    OnBoardingView()
+    OnBoardingView(vm: OnBoardingViewModel())
 }
 
 private extension OnBoardingView {
@@ -56,7 +62,9 @@ private extension OnBoardingView {
     }
     
     func nextButton(geo: GeometryProxy) -> some View {
-        Button(action: {}, label: {
+        Button(action: {
+            vm.nextButtonTapped()
+        }, label: {
             Text(R.string.localizable.next())
                 .foregroundColor(.black)
                 .frame(width: geo.size.width * 0.8, height: 50)

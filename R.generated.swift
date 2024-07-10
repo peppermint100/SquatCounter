@@ -13,7 +13,6 @@ struct _R {
   let bundle: Foundation.Bundle
   var string: string { .init(bundle: bundle, preferredLanguages: nil, locale: nil) }
   var color: color { .init(bundle: bundle) }
-  var image: image { .init(bundle: bundle) }
 
   func string(bundle: Foundation.Bundle) -> string {
     .init(bundle: bundle, preferredLanguages: nil, locale: nil)
@@ -27,9 +26,6 @@ struct _R {
   func color(bundle: Foundation.Bundle) -> color {
     .init(bundle: bundle)
   }
-  func image(bundle: Foundation.Bundle) -> image {
-    .init(bundle: bundle)
-  }
   func validate() throws {
 
   }
@@ -38,17 +34,40 @@ struct _R {
     let developmentRegion = "en"
   }
 
-  /// This `_R.string` struct is generated, and contains static references to 1 localization tables.
+  /// This `_R.string` struct is generated, and contains static references to 2 localization tables.
   struct string {
     let bundle: Foundation.Bundle
     let preferredLanguages: [String]?
     let locale: Locale?
+    var infoPlist: infoPlist { .init(source: .init(bundle: bundle, tableName: "InfoPlist", preferredLanguages: preferredLanguages, locale: locale)) }
     var localizable: localizable { .init(source: .init(bundle: bundle, tableName: "Localizable", preferredLanguages: preferredLanguages, locale: locale)) }
 
+    func infoPlist(preferredLanguages: [String]) -> infoPlist {
+      .init(source: .init(bundle: bundle, tableName: "InfoPlist", preferredLanguages: preferredLanguages, locale: locale))
+    }
     func localizable(preferredLanguages: [String]) -> localizable {
       .init(source: .init(bundle: bundle, tableName: "Localizable", preferredLanguages: preferredLanguages, locale: locale))
     }
 
+
+    /// This `_R.string.infoPlist` struct is generated, and contains static references to 2 localization keys.
+    struct infoPlist {
+      let source: RswiftResources.StringResource.Source
+
+      /// en translation: Bluetooth permission is required for exercising with AirPods.
+      ///
+      /// Key: NSBluetoothAlwaysUsageDescription
+      ///
+      /// Locales: en, ko
+      var nsBluetoothAlwaysUsageDescription: RswiftResources.StringResource { .init(key: "NSBluetoothAlwaysUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Bluetooth permission is required for exercising with AirPods.", comment: nil) }
+
+      /// en translation: Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.
+      ///
+      /// Key: NSMotionUsageDescription
+      ///
+      /// Locales: en, ko
+      var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
+    }
 
     /// This `_R.string.localizable` struct is generated, and contains static references to 6 localization keys.
     struct localizable {
@@ -113,13 +132,5 @@ struct _R {
 
     /// Color `lightGray`.
     var lightGray: RswiftResources.ColorResource { .init(name: "lightGray", path: [], bundle: bundle) }
-  }
-
-  /// This `_R.image` struct is generated, and contains static references to 1 images.
-  struct image {
-    let bundle: Foundation.Bundle
-
-    /// Image `onBoardingImage`.
-    var onBoardingImage: RswiftResources.ImageResource { .init(name: "onBoardingImage", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
   }
 }
