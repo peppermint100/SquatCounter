@@ -69,7 +69,7 @@ struct _R {
       var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
     }
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 6 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 8 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
 
@@ -86,6 +86,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var bluetoothPermissionDescription: RswiftResources.StringResource { .init(key: "Bluetooth Permission Description", tableName: "Localizable", source: source, developmentValue: "Bluetooth permission is required for exercising with AirPods.", comment: nil) }
+
+      /// en translation: Home
+      ///
+      /// Key: Home
+      ///
+      /// Locales: en, ko
+      var home: RswiftResources.StringResource { .init(key: "Home", tableName: "Localizable", source: source, developmentValue: "Home", comment: nil) }
 
       /// en translation: Motion Sensor
       ///
@@ -114,6 +121,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var onboardingPermissionTitle: RswiftResources.StringResource { .init(key: "Onboarding Permission Title", tableName: "Localizable", source: source, developmentValue: "Please allow the following permissions to use the app.", comment: nil) }
+
+      /// en translation: Setting
+      ///
+      /// Key: Setting
+      ///
+      /// Locales: en, ko
+      var setting: RswiftResources.StringResource { .init(key: "Setting", tableName: "Localizable", source: source, developmentValue: "Setting", comment: nil) }
     }
   }
 

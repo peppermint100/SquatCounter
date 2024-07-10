@@ -10,4 +10,6 @@ import SwiftUI
 enum Symbols {
     static let figureCooldown = Image(systemName: "figure.cooldown")
     static let airpodsCaseWithSignal = Image(systemName: "airpodspro.chargingcase.wireless.radiowaves.left.and.right.fill")
+    static let figureCrossTraining = Image(systemName: "figure.cross.training")
+    static let gear = Image(systemName: "gear")
 }

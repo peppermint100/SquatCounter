@@ -14,3 +14,6 @@
 "Bluetooth" = "블루투스";
 "Bluetooth Permission Description" = "에어팟으로 운동하기 기능을 위해 블루투스 권한이 필요합니다.";
 
+// Tab
+"Home" = "홈";
+"Setting" = "설정";

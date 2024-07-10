@@ -13,3 +13,7 @@
 "Next" = "Next";
 "Bluetooth" = "Bluetooth";
 "Bluetooth Permission Description" = "Bluetooth permission is required for exercising with AirPods.";
+
+// Tab
+"Home" = "Home";
+"Setting" = "Setting";
