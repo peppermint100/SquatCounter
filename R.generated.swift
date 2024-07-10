@@ -13,6 +13,7 @@ struct _R {
   let bundle: Foundation.Bundle
   var string: string { .init(bundle: bundle, preferredLanguages: nil, locale: nil) }
   var color: color { .init(bundle: bundle) }
+  var image: image { .init(bundle: bundle) }
 
   func string(bundle: Foundation.Bundle) -> string {
     .init(bundle: bundle, preferredLanguages: nil, locale: nil)
@@ -24,6 +25,9 @@ struct _R {
     .init(bundle: bundle, preferredLanguages: preferredLanguages, locale: locale)
   }
   func color(bundle: Foundation.Bundle) -> color {
+    .init(bundle: bundle)
+  }
+  func image(bundle: Foundation.Bundle) -> image {
     .init(bundle: bundle)
   }
   func validate() throws {
@@ -46,24 +50,76 @@ struct _R {
     }
 
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 1 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 6 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
 
-      /// en translation: Hello World
+      /// en translation: Bluetooth
       ///
-      /// Key: Hello World
+      /// Key: Bluetooth
       ///
       /// Locales: en, ko
-      var helloWorld: RswiftResources.StringResource { .init(key: "Hello World", tableName: "Localizable", source: source, developmentValue: "Hello World", comment: nil) }
+      var bluetooth: RswiftResources.StringResource { .init(key: "Bluetooth", tableName: "Localizable", source: source, developmentValue: "Bluetooth", comment: nil) }
+
+      /// en translation: Bluetooth permission is required for exercising with AirPods.
+      ///
+      /// Key: Bluetooth Permission Description
+      ///
+      /// Locales: en, ko
+      var bluetoothPermissionDescription: RswiftResources.StringResource { .init(key: "Bluetooth Permission Description", tableName: "Localizable", source: source, developmentValue: "Bluetooth permission is required for exercising with AirPods.", comment: nil) }
+
+      /// en translation: Motion Sensor
+      ///
+      /// Key: Motion Sensor
+      ///
+      /// Locales: en, ko
+      var motionSensor: RswiftResources.StringResource { .init(key: "Motion Sensor", tableName: "Localizable", source: source, developmentValue: "Motion Sensor", comment: nil) }
+
+      /// en translation: Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.
+      ///
+      /// Key: Motion Sensor Description
+      ///
+      /// Locales: en, ko
+      var motionSensorDescription: RswiftResources.StringResource { .init(key: "Motion Sensor Description", tableName: "Localizable", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
+
+      /// en translation: Next
+      ///
+      /// Key: Next
+      ///
+      /// Locales: en, ko
+      var next: RswiftResources.StringResource { .init(key: "Next", tableName: "Localizable", source: source, developmentValue: "Next", comment: nil) }
+
+      /// en translation: Please allow the following permissions to use the app.
+      ///
+      /// Key: Onboarding Permission Title
+      ///
+      /// Locales: en, ko
+      var onboardingPermissionTitle: RswiftResources.StringResource { .init(key: "Onboarding Permission Title", tableName: "Localizable", source: source, developmentValue: "Please allow the following permissions to use the app.", comment: nil) }
     }
   }
 
-  /// This `_R.color` struct is generated, and contains static references to 1 colors.
+  /// This `_R.color` struct is generated, and contains static references to 4 colors.
   struct color {
     let bundle: Foundation.Bundle
 
     /// Color `AccentColor`.
     var accentColor: RswiftResources.ColorResource { .init(name: "AccentColor", path: [], bundle: bundle) }
+
+    /// Color `backgroundColor`.
+    var backgroundColor: RswiftResources.ColorResource { .init(name: "backgroundColor", path: [], bundle: bundle) }
+
+    /// Color `descriptionLabel`.
+    var descriptionLabel: RswiftResources.ColorResource { .init(name: "descriptionLabel", path: [], bundle: bundle) }
+
+    /// Color `lightGray`.
+    var lightGray: RswiftResources.ColorResource { .init(name: "lightGray", path: [], bundle: bundle) }
+  }
+
+  /// This `_R.image` struct is generated, and contains static references to 1 images.
+  struct image {
+    let bundle: Foundation.Bundle
+
+    /// Image `onBoardingImage`.
+    var onBoardingImage: RswiftResources.ImageResource { .init(name: "onBoardingImage", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
   }
 }

@@ -6,4 +6,10 @@
   
 */
 
-"Hello World" = "Hello World";
+// Onboarding
+"Onboarding Permission Title" = "Please allow the following permissions to use the app.";
+"Motion Sensor" = "Motion Sensor";
+"Motion Sensor Description" = "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.";
+"Next" = "Next";
+"Bluetooth" = "Bluetooth";
+"Bluetooth Permission Description" = "Bluetooth permission is required for exercising with AirPods.";
