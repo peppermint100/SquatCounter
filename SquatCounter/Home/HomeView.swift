@@ -9,7 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @AppStorage(UserDefaultsKey.goal) private var goal = UserDefaults.standard.integer(forKey: UserDefaultsKey.goal)
+    @StateObject private var router = HomeRouter()
     @StateObject private var vm = HomeViewModel()
+    
+    init() {
+        if goal == 0 {
+            goal = 10
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -18,9 +26,8 @@ struct HomeView: View {
             
             GeometryReader { geo in
                 let imageSize = geo.size.width * 0.18
-                let buttonWidth = geo.size.width * 0.4
-                let buttonHeight: CGFloat = 40
-                let settingButtonSize = CGSize(width: geo.size.width * 0.8, height: buttonHeight)
+                let settingButtonSize = CGSize(width: geo.size.width * 0.8, height: 40)
+                let setGoalAndStartButtonSize = CGSize(width: geo.size.width * 0.4, height: 40)
                 
                 VStack(alignment: .leading) {
                     chooseDevice
@@ -52,19 +59,18 @@ struct HomeView: View {
                         Spacer()
                         HStack {
                             Spacer()
-                            Text(R.string.localizable.setGoal)
-                                .borderedButton()
-                                .frame(width: buttonWidth, height: buttonHeight)
+                            setGoalButton(buttonSize: setGoalAndStartButtonSize)
                             Spacer()
-                            Text(R.string.localizable.start)
-                                .borderedButton()
-                                .frame(width: buttonWidth, height: buttonHeight)
+                            startButton(buttonSize: setGoalAndStartButtonSize)
                             Spacer()
                         }
                     }
                 }
             }
             .padding()
+        }
+        .sheet(item: $router.sheet, onDismiss: { router.dismiss() }) { sheet in
+            router.build(sheet)
         }
     }
 }
@@ -158,5 +164,28 @@ private extension HomeView {
                     .foregroundStyle(.gray)
             }
         }
+    }
+    
+    func setGoalButton(buttonSize: CGSize) -> some View {
+        HStack {
+            Text(R.string.localizable.setGoal)
+            Text("\(goal)")
+                .foregroundStyle(.white)
+                .font(.caption)
+                .fontWeight(Font.Weight.bold)
+                .padding(goal >= 100 ? 5 : 4)
+                .background(Circle().fill(.black))
+        }
+        .borderedButton()
+        .frame(width: buttonSize.width, height: buttonSize.height)
+        .onTapGesture {
+            router.present(.setGoal)
+        }
+    }
+    
+    func startButton(buttonSize: CGSize) -> some View {
+        Text(R.string.localizable.start)
+            .borderedButton()
+            .frame(width: buttonSize.width, height: buttonSize.height)
     }
 }
