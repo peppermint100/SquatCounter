@@ -9,7 +9,12 @@ import SwiftUI
 
 final class HomeRouter: ObservableObject {
     
+    @Published var path = NavigationPath()
     @Published var sheet: Sheet? = nil
+    
+    enum Page: Hashable {
+        case squat(device: Device)
+    }
     
     enum Sheet: String, Identifiable {
         case setGoal
@@ -25,6 +30,23 @@ final class HomeRouter: ObservableObject {
     
     func dismiss() {
         self.sheet = nil
+    }
+    
+    func push(_ page: Page) {
+        path.append(page)
+    }
+    
+    func pop() {
+        path.removeLast()
+    }
+    
+    @ViewBuilder
+    func build(_ page: Page) -> some View {
+        switch page {
+        case .squat(let device):
+            SquatView(device: device)
+                .environmentObject(self)
+        }
     }
     
     @ViewBuilder

@@ -20,57 +20,63 @@ struct HomeView: View {
     }
     
     var body: some View {
-        ZStack {
-            R.color.backgroundColor.color
-                .ignoresSafeArea()
-            
-            GeometryReader { geo in
-                let imageSize = geo.size.width * 0.18
-                let settingButtonSize = CGSize(width: geo.size.width * 0.8, height: 40)
-                let setGoalAndStartButtonSize = CGSize(width: geo.size.width * 0.4, height: 40)
+        NavigationStack(path: $router.path) {
+            ZStack {
+                R.color.backgroundColor.color
+                    .ignoresSafeArea()
                 
-                VStack(alignment: .leading) {
-                    chooseDevice
-                    devicesTab
+                GeometryReader { geo in
+                    let imageSize = geo.size.width * 0.18
+                    let settingButtonSize = CGSize(width: geo.size.width * 0.8, height: 40)
+                    let setGoalAndStartButtonSize = CGSize(width: geo.size.width * 0.4, height: 40)
                     
-                    Spacer()
-                    
-                    VStack {
-                        HStack {
-                            Spacer()
-                            if vm.selectedDevice == .iPhone {
-                                iPhoneWorkout(imageSize: imageSize)
-                            } else {
-                                airPodsWorkout(imageSize: imageSize)
-                            }
-                            Spacer()
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    if !vm.showSettingButton {
-                        HStack {
-                            Spacer()
-                            settingButton(buttonSize: settingButtonSize)
-                            Spacer()
-                        }
-                    } else {
+                    VStack(alignment: .leading) {
+                        chooseDevice
+                        devicesTab
+                        
                         Spacer()
-                        HStack {
+                        
+                        VStack {
+                            HStack {
+                                Spacer()
+                                if vm.selectedDevice == .iPhone {
+                                    iPhoneWorkout(imageSize: imageSize)
+                                } else {
+                                    airPodsWorkout(imageSize: imageSize)
+                                }
+                                Spacer()
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        if !vm.showSettingButton {
+                            HStack {
+                                Spacer()
+                                settingButton(buttonSize: settingButtonSize)
+                                Spacer()
+                            }
+                        } else {
                             Spacer()
-                            setGoalButton(buttonSize: setGoalAndStartButtonSize)
-                            Spacer()
-                            startButton(buttonSize: setGoalAndStartButtonSize)
-                            Spacer()
+                            HStack {
+                                Spacer()
+                                setGoalButton(buttonSize: setGoalAndStartButtonSize)
+                                Spacer()
+                                startButton(buttonSize: setGoalAndStartButtonSize)
+                                Spacer()
+                            }
                         }
                     }
                 }
+                .padding()
+                .sheet(item: $router.sheet, onDismiss: { router.dismiss() }) { sheet in
+                    router.build(sheet)
+                }
+                .navigationDestination(for: HomeRouter.Page.self) { page in
+                    router.build(page)
+                }
             }
-            .padding()
-        }
-        .sheet(item: $router.sheet, onDismiss: { router.dismiss() }) { sheet in
-            router.build(sheet)
+            
         }
     }
 }
@@ -187,5 +193,8 @@ private extension HomeView {
         Text(R.string.localizable.start)
             .borderedButton()
             .frame(width: buttonSize.width, height: buttonSize.height)
+            .onTapGesture {
+                router.push(.squat(device: vm.selectedDevice))
+            }
     }
 }
