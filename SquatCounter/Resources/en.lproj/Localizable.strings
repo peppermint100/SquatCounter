@@ -17,3 +17,19 @@
 // Tab
 "Home" = "Home";
 "Setting" = "Setting";
+
+// Home
+"Choose Your Device" = "Choose Your Device";
+"iPhone" = "iPhone";
+
+"AirPods" = "AirPods";
+"AirpodsMotionSensorHeadline" = "AirPods Motion Sensor";
+"AirpodsMotionSensorDescription" = "Please wear both AirPods during your workout.";
+"MotionFitnessPermissionHeadline" = "Motion & Fitness Permission Required";
+"MotionFitnessPermissionDescription" = "Motion and fitness permissions are required to count squats.";
+"iPhoneMotionSensorHeadline" = "iPhone Motion Sensor";
+"iPhoneMotionSensorDescription" = "Please hold your iPhone properly during your workout.";
+"No AirPods Connected" = "No AirPods Connected";
+"Set Goal" = "Set Goal";
+"Start" = "Start";
+

@@ -9,4 +9,5 @@ import Foundation
 
 enum UserDefaultsKey {
     static let hasUserOnBoarded = "hasUserOnBoarded"
+    static let goal = "goal"
 }
