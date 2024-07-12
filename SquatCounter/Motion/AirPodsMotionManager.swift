@@ -7,11 +7,12 @@
 
 import Foundation
 import CoreMotion
+import Combine
 
 final class AirPodsMotionManager: MotionManager, ObservableObject {
     
     @Published var isActive: Bool = false
-    @Published var acceleration: Double = 0
+    let accelerationSubject = PassthroughSubject<Double, Never>()
     
     private let cmManager = CMHeadphoneMotionManager()
     
@@ -48,7 +49,7 @@ final class AirPodsMotionManager: MotionManager, ObservableObject {
             }
             
             if let motion = motion {
-                self?.acceleration = motion.userAcceleration.y
+                self?.accelerationSubject.send(motion.userAcceleration.y)
             }
         }
     }

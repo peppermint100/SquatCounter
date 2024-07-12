@@ -7,11 +7,12 @@
 
 import Foundation
 import CoreMotion
+import Combine
 
 final class iPhoneMotionManager: MotionManager, ObservableObject {
     
     @Published var isActive: Bool = false
-    @Published var acceleration: Double = 0
+    let accelerationSubject = PassthroughSubject<Double, Never>()
     
     private let cmManager = CMMotionManager()
     
@@ -49,7 +50,7 @@ final class iPhoneMotionManager: MotionManager, ObservableObject {
             }
             
             if let motion = motion {
-                self?.acceleration = motion.userAcceleration.y
+                self?.accelerationSubject.send(motion.userAcceleration.y)
             }
         }
     }

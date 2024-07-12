@@ -20,7 +20,14 @@ struct SquatView: View {
     }
     
     var body: some View {
-        Text("Squat")
+        ZStack {
+            R.color.backgroundColor.color
+            
+            VStack {
+                Text("Squat")
+                Text("\(vm.squatCount)")
+            }
+        }
     }
 }
 
