@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class OSLevelRedrection {
+final class OSLevelRedirection {
     
     static func redirectToAppSettings() {
         if let url = URL(string: UIApplication.openSettingsURLString) {

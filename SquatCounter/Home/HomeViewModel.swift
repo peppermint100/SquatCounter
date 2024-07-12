@@ -46,6 +46,6 @@ final class HomeViewModel: ObservableObject {
     }
     
     func settingButtonTapped() {
-        OSLevelRedrection.redirectToAppSettings()
+        OSLevelRedirection.redirectToAppSettings()
     }
 }
