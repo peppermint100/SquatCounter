@@ -12,4 +12,6 @@ enum Symbols {
     static let airpodsCaseWithSignal = Image(systemName: "airpodspro.chargingcase.wireless.radiowaves.left.and.right.fill")
     static let figureCrossTraining = Image(systemName: "figure.cross.training")
     static let gear = Image(systemName: "gear")
+    static let iPhone = Image(systemName: "iphone.gen3")
+    static let airPods = Image(systemName: "airpodspro")
 }
