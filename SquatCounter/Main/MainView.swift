@@ -34,6 +34,7 @@ struct MainView: View {
                     }
                     .tag(1)
             }
+            .tint(.black)
         } else {
             OnBoardingView(vm: onBoardingVM)
                 .onReceive(onBoardingVM.nextButtonSubject) {
