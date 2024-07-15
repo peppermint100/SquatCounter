@@ -13,6 +13,7 @@ struct _R {
   let bundle: Foundation.Bundle
   var string: string { .init(bundle: bundle, preferredLanguages: nil, locale: nil) }
   var color: color { .init(bundle: bundle) }
+  var file: file { .init(bundle: bundle) }
 
   func string(bundle: Foundation.Bundle) -> string {
     .init(bundle: bundle, preferredLanguages: nil, locale: nil)
@@ -24,6 +25,9 @@ struct _R {
     .init(bundle: bundle, preferredLanguages: preferredLanguages, locale: locale)
   }
   func color(bundle: Foundation.Bundle) -> color {
+    .init(bundle: bundle)
+  }
+  func file(bundle: Foundation.Bundle) -> file {
     .init(bundle: bundle)
   }
   func validate() throws {
@@ -69,7 +73,7 @@ struct _R {
       var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
     }
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 20 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 22 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
 
@@ -114,6 +118,20 @@ struct _R {
       ///
       /// Locales: en, ko
       var chooseYourDevice: RswiftResources.StringResource { .init(key: "Choose Your Device", tableName: "Localizable", source: source, developmentValue: "Choose Your Device", comment: nil) }
+
+      /// en translation: Finish
+      ///
+      /// Key: Finish
+      ///
+      /// Locales: en, ko
+      var finish: RswiftResources.StringResource { .init(key: "Finish", tableName: "Localizable", source: source, developmentValue: "Finish", comment: nil) }
+
+      /// en translation: Finish Workout
+      ///
+      /// Key: Finish Workout
+      ///
+      /// Locales: en, ko
+      var finishWorkout: RswiftResources.StringResource { .init(key: "Finish Workout", tableName: "Localizable", source: source, developmentValue: "Finish Workout", comment: nil) }
 
       /// en translation: Home
       ///
@@ -230,5 +248,13 @@ struct _R {
 
     /// Color `lightGray`.
     var lightGray: RswiftResources.ColorResource { .init(name: "lightGray", path: [], bundle: bundle) }
+  }
+
+  /// This `_R.file` struct is generated, and contains static references to 1 resource files.
+  struct file {
+    let bundle: Foundation.Bundle
+
+    /// Resource file `MarioJumping.mp3`.
+    var marioJumpingMp3: RswiftResources.FileResource { .init(name: "MarioJumping", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
   }
 }
