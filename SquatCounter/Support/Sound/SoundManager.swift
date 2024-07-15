@@ -36,7 +36,9 @@ final class SoundManager: NSObject {
     }
     
     func play() {
-        soundPlayer?.play()
+        if UserDefaults.standard.bool(forKey: UserDefaultsKey.sound) {
+            soundPlayer?.play()
+        }
     }
 }
 

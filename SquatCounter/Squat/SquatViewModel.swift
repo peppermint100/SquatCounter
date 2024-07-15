@@ -79,7 +79,6 @@ final class SquatViewModel: ObservableObject {
         motionManager.stopMotionUpdates()
     }
 
-    
     deinit {
         motionManager.stopMotionUpdates()
     }
