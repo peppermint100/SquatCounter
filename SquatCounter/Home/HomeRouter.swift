@@ -66,8 +66,8 @@ final class HomeRouter: ObservableObject {
         case .squat(let device):
             SquatView(device: device)
                 .environmentObject(self)
-        case .finish:
-            FinishView()
+        case .finish(let result):
+            FinishView(result: result)
                 .environmentObject(self)
         }
     }
