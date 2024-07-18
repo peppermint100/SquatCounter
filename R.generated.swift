@@ -73,7 +73,7 @@ struct _R {
       var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
     }
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 22 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 25 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
 
@@ -140,6 +140,13 @@ struct _R {
       /// Locales: en, ko
       var home: RswiftResources.StringResource { .init(key: "Home", tableName: "Localizable", source: source, developmentValue: "Home", comment: nil) }
 
+      /// en translation: Interval
+      ///
+      /// Key: Interval
+      ///
+      /// Locales: en, ko
+      var interval: RswiftResources.StringResource { .init(key: "Interval", tableName: "Localizable", source: source, developmentValue: "Interval", comment: nil) }
+
       /// en translation: Motion Sensor
       ///
       /// Key: Motion Sensor
@@ -189,6 +196,13 @@ struct _R {
       /// Locales: en, ko
       var onboardingPermissionTitle: RswiftResources.StringResource { .init(key: "Onboarding Permission Title", tableName: "Localizable", source: source, developmentValue: "Please allow the following permissions to use the app.", comment: nil) }
 
+      /// en translation: Return
+      ///
+      /// Key: Return
+      ///
+      /// Locales: en, ko
+      var `return`: RswiftResources.StringResource { .init(key: "Return", tableName: "Localizable", source: source, developmentValue: "Return", comment: nil) }
+
       /// en translation: Set Goal
       ///
       /// Key: Set Goal
@@ -209,6 +223,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var start: RswiftResources.StringResource { .init(key: "Start", tableName: "Localizable", source: source, developmentValue: "Start", comment: nil) }
+
+      /// en translation: Time
+      ///
+      /// Key: Time
+      ///
+      /// Locales: en, ko
+      var time: RswiftResources.StringResource { .init(key: "Time", tableName: "Localizable", source: source, developmentValue: "Time", comment: nil) }
 
       /// en translation: iPhone
       ///
