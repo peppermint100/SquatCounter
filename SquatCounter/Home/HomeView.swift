@@ -76,7 +76,6 @@ struct HomeView: View {
                     router.build(page)
                 }
             }
-            
         }
     }
 }
@@ -158,6 +157,7 @@ private extension HomeView {
             } else {
                 Text(R.string.localizable.noAirPodsConnected)
                     .font(.headline)
+                    .foregroundStyle(.gray)
             }
             
             if vm.isAirPodsAvailable && vm.isMotionSensorAvailable {
@@ -190,11 +190,14 @@ private extension HomeView {
     }
     
     func startButton(buttonSize: CGSize) -> some View {
-        Text(R.string.localizable.start)
-            .borderedButton()
-            .frame(width: buttonSize.width, height: buttonSize.height)
-            .onTapGesture {
-                router.push(.squat(device: vm.selectedDevice))
-            }
+        Button(action: {
+            router.push(.squat(device: vm.selectedDevice))
+        }, label: {
+            Text(R.string.localizable.start)
+                .foregroundStyle(vm.disableStartButton ? .gray : .black)
+                .borderedButton(disabled: vm.disableStartButton)
+                .frame(width: buttonSize.width, height: buttonSize.height)
+        })
+        .disabled(vm.disableStartButton)
     }
 }
