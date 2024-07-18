@@ -7,5 +7,4 @@ target 'SquatCounter' do
 
   # Pods for SquatCounter
   pod 'R.swift'
-
 end

@@ -13,8 +13,10 @@ final class SquatViewModel: ObservableObject {
     
     private let motionManager: MotionManager
     private var cancelBag = Set<AnyCancellable>()
+    private let startedTime = Date.now
     
-    let finishSquat = PassthroughSubject<Void, Never>()
+    let finishSquatTrigger = PassthroughSubject<SquatResult, Never>()
+    private let timerPublisher = Timer.publish(every: 1.0, on: .current, in: .common).autoconnect()
     
     var device: Device
     @Published var isSquating = false
@@ -27,6 +29,7 @@ final class SquatViewModel: ObservableObject {
     @Published var alertValues = AlertValues.empty()
     
     private var soundManagers = [SoundManager]()
+    private var duration: TimeInterval = 0
     
     var goal = UserDefaults.standard.integer(forKey: UserDefaultsKey.goal)
     
@@ -56,27 +59,51 @@ final class SquatViewModel: ObservableObject {
             UserDefaults.standard.set($0, forKey: UserDefaultsKey.vibrate)
         }
         .store(in: &cancelBag)
+        
+        $squatCount
+            .debounce(for: 0.5, scheduler: DispatchQueue.main)
+            .sink { [weak self] count in
+            guard let self = self else { return }
+            if count >= self.goal {
+                finishSquat()
+            }
+        }
+        .store(in: &cancelBag)
+        
+        timerPublisher.sink { [weak self] output in
+            guard let self = self else { return }
+            self.duration = output.timeIntervalSince(self.startedTime)
+        }
+        .store(in: &cancelBag)
     }
     
     private func detectSquat(acceleration: Double) {
-        if squatCount == goal {
-            finishSquat.send()
-        }
-        
         if acceleration > -1.1 {
             isSquating = true
         } else if acceleration < -0.7 {
             isSquating = false
-            squatCount += 1
-            haptic(.success)
-            playSound()
+            if squatCount < goal {
+                squatCount += 1
+                haptic(.success)
+                playSound()
+            }
         }
+    }
+    
+    func finishSquat() {
+        finishSquatTrigger.send(
+            SquatResult(count: squatCount, duration: duration)
+        )
     }
     
     func didTapFinishButton() {
         showAlert = true
         alertValues = AlertValues(title: "종료하시겠습니까?", message: "")
         motionManager.stopMotionUpdates()
+    }
+    
+    func restartMotion() {
+        motionManager.startMotionUpdates()
     }
 
     deinit {

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AVFoundation
 
 struct SquatView: View {
     
@@ -45,26 +44,30 @@ struct SquatView: View {
                     
                     Spacer()
                     
-                    Text(R.string.localizable.finishWorkout)
-                        .borderedButton()
-                        .frame(width: geo.size.width * 0.7, height: 40)
-                        .padding()
-                        .onTapGesture {
-                            vm.didTapFinishButton()
-                        }
+                    Button(action: {
+                        vm.didTapFinishButton()
+                    }, label: {
+                        Text(R.string.localizable.finishWorkout)
+                            .borderedButton()
+                            .frame(width: geo.size.width * 0.7, height: 40)
+                            .padding()
+                        
+                    })
                 }
             }
             .padding(.horizontal)
-            .onReceive(vm.finishSquat, perform: { _ in
-                router.push(.finish)
+            .onReceive(vm.finishSquatTrigger, perform: { result in
+                router.push(.finish(result))
             })
             .alert(isPresented: $vm.showAlert) {
                 Alert(
                     title: Text(vm.alertValues.title),
                     primaryButton: .destructive(Text(R.string.localizable.finish), action: {
-                        router.pop()
+                        vm.finishSquat()
                     }),
-                    secondaryButton: .cancel())
+                    secondaryButton: .cancel({
+                        vm.restartMotion()
+                    }))
             }
             .toolbar(.hidden, for: .navigationBar)
             .toolbar(.hidden, for: .tabBar)

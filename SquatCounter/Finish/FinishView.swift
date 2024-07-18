@@ -13,8 +13,7 @@ struct FinishView: View {
     
     var body: some View {
         VStack {
-            Text("Finish!")
-            Text("Home")
+            Text("123")
                 .onTapGesture {
                     router.root()
                 }

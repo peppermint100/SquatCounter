@@ -13,8 +13,21 @@ final class HomeRouter: ObservableObject {
     @Published var sheet: Sheet? = nil
     
     enum Page: Hashable {
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(self.hashValue)
+        }
+        
+        static func == (lhs: HomeRouter.Page, rhs: HomeRouter.Page) -> Bool {
+            switch (lhs, rhs) {
+            case let (.finish(lhsItem), .finish(rhsItem)):
+                return lhsItem.id == rhsItem.id
+            default:
+                return true
+            }
+        }
+        
         case squat(device: Device)
-        case finish
+        case finish(_ result: SquatResult)
     }
     
     enum Sheet: String, Identifiable {
