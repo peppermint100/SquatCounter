@@ -14,6 +14,8 @@ struct FinishView: View {
     
     @State private var trim: CGFloat = 0.0
     
+    @State private var animate = false
+    
     init(result: SquatResult) {
         self.vm = FinishViewModel(result: result)
     }
@@ -30,12 +32,10 @@ struct FinishView: View {
                 VStack {
                     Spacer()
                     progress(circleSize: circleSize)
+                        .frame(height: geo.size.height * 0.5)
                     Spacer()
-                    
                     results
-                    
                     Spacer()
-                    
                     button(buttonWidth: buttonWidth)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -46,7 +46,7 @@ struct FinishView: View {
 }
 
 #Preview {
-    FinishView(result: SquatResult(count: 5, duration: 10000))
+    FinishView(result: SquatResult(count: 10, duration: 10000))
 }
 
 private extension FinishView {
@@ -64,6 +64,20 @@ private extension FinishView {
                 .onAppear {
                     withAnimation(.easeInOut(duration: 1)) {
                         trim = CGFloat(Double(vm.result.count) / Double(vm.goal))
+                    }
+                }
+            
+            Circle()
+                .stroke(lineWidth: 1)
+                .scale(animate ? 1.5 : 1.1)
+                .opacity(animate ? 0 : 1)
+                .animation(animate ? Animation.easeInOut(duration: 1.0) : .none)
+                .frame(width: circleSize)
+                .onAppear {
+                    if vm.goal == vm.result.count {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            animate = true
+                        }
                     }
                 }
             
