@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import AVFAudio
+import CoreMotion
 
 final class HomeViewModel: ObservableObject {
     
@@ -28,6 +29,7 @@ final class HomeViewModel: ObservableObject {
         addSubscibers()
         NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChanged), name: AVAudioSession.routeChangeNotification, object: audioSession)
         audioRouteChanged()
+        updateMotionPermission()
     }
     
     private func addSubscibers() {
@@ -62,6 +64,20 @@ final class HomeViewModel: ObservableObject {
     }
 }
 
+// MARK: Motion {
+extension HomeViewModel {
+    
+    func updateMotionPermission() {
+        switch CMMotionActivityManager.authorizationStatus() {
+        case .authorized:
+            self.isMotionSensorAvailable = true
+        default:
+            self.isMotionSensorAvailable = false
+        }
+    }
+}
+
+// MARK: AirPods
 extension HomeViewModel {
     
     @objc private func audioRouteChanged() {

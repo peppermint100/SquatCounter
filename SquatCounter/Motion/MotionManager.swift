@@ -9,9 +9,7 @@ import Foundation
 import Combine
 
 protocol MotionManager {
-    var isMotionSensorPermitted: Bool { get }
     var isDeviceAvailable: Bool { get }
-    
     /**
      MotionManager가 디바이스로부터 데이터를 받고 있는지
     */

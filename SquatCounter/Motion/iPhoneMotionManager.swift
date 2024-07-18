@@ -16,27 +16,11 @@ final class iPhoneMotionManager: MotionManager, ObservableObject {
     
     private let cmManager = CMMotionManager()
     
-    var isMotionSensorPermitted: Bool = false
     var isDeviceAvailable: Bool = false
     
     init() {
         self.isDeviceAvailable = cmManager.isDeviceMotionAvailable
         cmManager.deviceMotionUpdateInterval = 0.1
-        updateMotionSensorPermission()
-    }
-    
-    private func updateMotionSensorPermission() {
-        cmManager.startDeviceMotionUpdates(to: .main) { [weak self] _, error in
-            if let error = error {
-                print(error.localizedDescription)
-                self?.isMotionSensorPermitted = false
-                self?.isDeviceAvailable = false
-            } else {
-                self?.isMotionSensorPermitted = true
-                self?.isDeviceAvailable = true
-            }
-        }
-        cmManager.stopDeviceMotionUpdates()
     }
     
     func startMotionUpdates() {
@@ -45,7 +29,6 @@ final class iPhoneMotionManager: MotionManager, ObservableObject {
             if let error = error {
                 print(error.localizedDescription)
                 self?.isDeviceAvailable = false
-                self?.isMotionSensorPermitted = false
                 return
             }
             
