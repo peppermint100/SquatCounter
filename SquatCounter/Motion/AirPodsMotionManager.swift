@@ -11,27 +11,38 @@ import Combine
 
 final class AirPodsMotionManager: MotionManager, ObservableObject {
     
+    var descendingThreshold = -0.003
+    var bottomThreshold = -0.001
+    var ascendingThreshold = 0.04
+    
     @Published var isActive: Bool = false
     let accelerationSubject = PassthroughSubject<Double, Never>()
+    private var timerCancellable: AnyCancellable?
     
     private let cmManager = CMHeadphoneMotionManager()
     
     func startMotionUpdates() {
         isActive = true
-        cmManager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
+        cmManager.startDeviceMotionUpdates()
+        timerCancellable = Timer.publish(every: 0.5, on: .current, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                self?.fetchMotionData()
             }
-            
-            if let motion = motion {
-                self?.accelerationSubject.send(motion.userAcceleration.y)
-            }
+    }
+    
+    private func fetchMotionData() {
+        if let deviceMotion = cmManager.deviceMotion {
+            accelerationSubject.send(deviceMotion.userAcceleration.y)
         }
     }
     
     func stopMotionUpdates() {
         isActive = false
         cmManager.stopDeviceMotionUpdates()
+    }
+    
+    deinit {
+        timerCancellable?.cancel()
     }
 }

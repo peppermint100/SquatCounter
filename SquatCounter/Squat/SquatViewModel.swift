@@ -11,6 +11,10 @@ import AVFoundation
 
 final class SquatViewModel: ObservableObject {
     
+    private let descendingThreshold = -0.003
+    private let bottomThreshold = -0.001
+    private let ascendingThreshold = 0.04
+    
     private let motionManager: MotionManager
     private var cancelBag = Set<AnyCancellable>()
     private let startedTime = Date.now
@@ -19,6 +23,7 @@ final class SquatViewModel: ObservableObject {
     private let timerPublisher = Timer.publish(every: 1.0, on: .current, in: .common).autoconnect()
     
     var device: Device
+    @Published var squatPhase: SquatPhase = .idle
     @Published var isSquating = false
     @Published var squatCount = 0
     
@@ -63,12 +68,12 @@ final class SquatViewModel: ObservableObject {
         $squatCount
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .sink { [weak self] count in
-            guard let self = self else { return }
-            if count >= self.goal {
-                finishSquat()
+                guard let self = self else { return }
+                if count >= self.goal {
+                    finishSquat()
+                }
             }
-        }
-        .store(in: &cancelBag)
+            .store(in: &cancelBag)
         
         timerPublisher.sink { [weak self] output in
             guard let self = self else { return }
@@ -78,19 +83,31 @@ final class SquatViewModel: ObservableObject {
     }
     
     private func detectSquat(acceleration: Double) {
-        if acceleration > -1.1 {
-            isSquating = true
-        } else if acceleration < -0.7 {
-            isSquating = false
-            if squatCount < goal {
-                squatCount += 1
-                haptic(.success)
-                playSound()
-            }
-        }
+        switch squatPhase {
+         case .idle:
+             if acceleration < descendingThreshold {
+                 squatPhase = .descending
+             }
+         case .descending:
+             if acceleration < bottomThreshold {
+                 squatPhase = .bottom
+             }
+         case .bottom:
+             if acceleration > ascendingThreshold {
+                 squatPhase = .ascending
+             }
+         case .ascending:
+             if acceleration < ascendingThreshold {
+                 squatPhase = .idle
+                 haptic(.success)
+                 playSound()
+                 squatCount += 1
+             }
+         }
     }
     
     func finishSquat() {
+        motionManager.stopMotionUpdates()
         finishSquatTrigger.send(
             SquatResult(count: squatCount, duration: duration)
         )
@@ -105,14 +122,14 @@ final class SquatViewModel: ObservableObject {
     func restartMotion() {
         motionManager.startMotionUpdates()
     }
-
+    
     deinit {
         motionManager.stopMotionUpdates()
     }
 }
 
 extension SquatViewModel: SoundManagerDelegate {
-        
+    
     func playSound() {
         let sound = SoundManager()
         sound.delegate = self
