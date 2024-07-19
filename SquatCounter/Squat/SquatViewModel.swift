@@ -115,7 +115,7 @@ final class SquatViewModel: ObservableObject {
     
     func didTapFinishButton() {
         showAlert = true
-        alertValues = AlertValues(title: "종료하시겠습니까?", message: "")
+        alertValues = AlertValues(title: R.string.localizable.confirmFinishWorkout(), message: "")
         motionManager.stopMotionUpdates()
     }
     

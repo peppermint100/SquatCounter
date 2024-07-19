@@ -36,6 +36,7 @@
 // Squat
 "Finish Workout" = "Finish Workout";
 "Finish" = "Finish";
+"Confirm Finish Workout" = "Would you like to finish your workout?";
 
 // Finish
 "Return" = "Return";
