@@ -18,7 +18,6 @@ final class HomeViewModel: ObservableObject {
     @Published var isMotionSensorAvailable = true
     @Published var isAirPodsAvailable = false
     @Published var airPodsName = ""
-    @Published var showSettingButton = false
     @Published var disableStartButton = true
     
     var devices: [Device] = [.iPhone, .airPods]
@@ -33,17 +32,6 @@ final class HomeViewModel: ObservableObject {
     }
     
     private func addSubscibers() {
-        $isMotionSensorAvailable.sink { [weak self] motion in
-            guard let self = self else { return }
-            
-            if self.selectedDevice == .iPhone {
-                showSettingButton = self.isMotionSensorAvailable
-            } else if self.selectedDevice == .airPods {
-                showSettingButton = self.isAirPodsAvailable || !self.isMotionSensorAvailable
-            }
-        }
-        .store(in: &cancelBag)
-        
         Publishers.CombineLatest($selectedDevice, $isAirPodsAvailable).map { device, airPodsConnected in
             device == .airPods && !airPodsConnected
         }

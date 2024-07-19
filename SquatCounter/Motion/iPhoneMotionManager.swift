@@ -16,10 +16,7 @@ final class iPhoneMotionManager: MotionManager, ObservableObject {
     
     private let cmManager = CMMotionManager()
     
-    var isDeviceAvailable: Bool = false
-    
     init() {
-        self.isDeviceAvailable = cmManager.isDeviceMotionAvailable
         cmManager.deviceMotionUpdateInterval = 0.1
     }
     
@@ -28,7 +25,6 @@ final class iPhoneMotionManager: MotionManager, ObservableObject {
         cmManager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in
             if let error = error {
                 print(error.localizedDescription)
-                self?.isDeviceAvailable = false
                 return
             }
             

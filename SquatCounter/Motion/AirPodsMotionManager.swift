@@ -16,35 +16,11 @@ final class AirPodsMotionManager: MotionManager, ObservableObject {
     
     private let cmManager = CMHeadphoneMotionManager()
     
-    var isMotionSensorPermitted: Bool = false
-    var isDeviceAvailable: Bool = false
-    
-    init() {
-        self.isDeviceAvailable = cmManager.isDeviceMotionAvailable
-        updateMotionSensorPermission()
-    }
-    
-    private func updateMotionSensorPermission() {
-        cmManager.startDeviceMotionUpdates(to: .main) { [weak self] _, error in
-            if let error = error {
-                print(error.localizedDescription)
-                self?.isMotionSensorPermitted = false
-                self?.isDeviceAvailable = false
-            } else {
-                self?.isMotionSensorPermitted = true
-                self?.isDeviceAvailable = true
-            }
-        }
-        cmManager.stopDeviceMotionUpdates()
-    }
-    
     func startMotionUpdates() {
         isActive = true
         cmManager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in
             if let error = error {
                 print(error.localizedDescription)
-                self?.isDeviceAvailable = false
-                self?.isMotionSensorPermitted = false
                 return
             }
             
