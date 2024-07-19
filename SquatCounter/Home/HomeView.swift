@@ -12,6 +12,7 @@ struct HomeView: View {
     @AppStorage(UserDefaultsKey.goal) private var goal = UserDefaults.standard.integer(forKey: UserDefaultsKey.goal)
     @StateObject private var router = HomeRouter()
     @StateObject private var vm = HomeViewModel()
+    @Environment(\.scenePhase) private var scenePhase
     
     init() {
         if goal == 0 {
@@ -50,7 +51,7 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        if !vm.showSettingButton {
+                        if !vm.isMotionSensorAvailable {
                             HStack {
                                 Spacer()
                                 settingButton(buttonSize: settingButtonSize)
@@ -75,8 +76,12 @@ struct HomeView: View {
                 .navigationDestination(for: HomeRouter.Page.self) { page in
                     router.build(page)
                 }
+                .onChange(of: scenePhase) { oldValue, newValue in
+                    if newValue == .active {
+                        vm.updateMotionPermission()
+                    }
+                }
             }
-            
         }
     }
 }
@@ -112,7 +117,7 @@ private extension HomeView {
         Button(action: {
             vm.settingButtonTapped()
         }, label: {
-            Text("설정")
+            Text(R.string.localizable.setting)
                 .borderedButton()
                 .frame(width: buttonSize.width, height: buttonSize.height)
         })
@@ -158,6 +163,8 @@ private extension HomeView {
             } else {
                 Text(R.string.localizable.noAirPodsConnected)
                     .font(.headline)
+                    .fontWeight(.regular)
+                    .foregroundStyle(.gray)
             }
             
             if vm.isAirPodsAvailable && vm.isMotionSensorAvailable {
@@ -190,11 +197,14 @@ private extension HomeView {
     }
     
     func startButton(buttonSize: CGSize) -> some View {
-        Text(R.string.localizable.start)
-            .borderedButton()
-            .frame(width: buttonSize.width, height: buttonSize.height)
-            .onTapGesture {
-                router.push(.squat(device: vm.selectedDevice))
-            }
+        Button(action: {
+            router.push(.squat(device: vm.selectedDevice))
+        }, label: {
+            Text(R.string.localizable.start)
+                .foregroundStyle(vm.disableStartButton ? .gray : .black)
+                .borderedButton(disabled: vm.disableStartButton)
+                .frame(width: buttonSize.width, height: buttonSize.height)
+        })
+        .disabled(vm.disableStartButton)
     }
 }

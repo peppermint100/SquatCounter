@@ -11,32 +11,17 @@ import Combine
 
 final class iPhoneMotionManager: MotionManager, ObservableObject {
     
+    var descendingThreshold = -1.1
+    var bottomThreshold = -0.1
+    var ascendingThreshold = -0.7
+    
     @Published var isActive: Bool = false
     let accelerationSubject = PassthroughSubject<Double, Never>()
     
     private let cmManager = CMMotionManager()
     
-    var isMotionSensorPermitted: Bool = false
-    var isDeviceAvailable: Bool = false
-    
     init() {
-        self.isDeviceAvailable = cmManager.isDeviceMotionAvailable
-        cmManager.deviceMotionUpdateInterval = 0.1
-        updateMotionSensorPermission()
-    }
-    
-    private func updateMotionSensorPermission() {
-        cmManager.startDeviceMotionUpdates(to: .main) { [weak self] _, error in
-            if let error = error {
-                print(error.localizedDescription)
-                self?.isMotionSensorPermitted = false
-                self?.isDeviceAvailable = false
-            } else {
-                self?.isMotionSensorPermitted = true
-                self?.isDeviceAvailable = true
-            }
-        }
-        cmManager.stopDeviceMotionUpdates()
+        cmManager.deviceMotionUpdateInterval = 0.5
     }
     
     func startMotionUpdates() {
@@ -44,8 +29,6 @@ final class iPhoneMotionManager: MotionManager, ObservableObject {
         cmManager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in
             if let error = error {
                 print(error.localizedDescription)
-                self?.isDeviceAvailable = false
-                self?.isMotionSensorPermitted = false
                 return
             }
             

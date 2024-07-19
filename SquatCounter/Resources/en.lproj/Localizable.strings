@@ -21,7 +21,6 @@
 // Home
 "Choose Your Device" = "Choose Your Device";
 "iPhone" = "iPhone";
-
 "AirPods" = "AirPods";
 "AirpodsMotionSensorHeadline" = "AirPods Motion Sensor";
 "AirpodsMotionSensorDescription" = "Please wear both AirPods during your workout.";
@@ -32,7 +31,7 @@
 "No AirPods Connected" = "No AirPods Connected";
 "Set Goal" = "Set Goal";
 "Start" = "Start";
-
+"Confirm" = "Confirm";
 
 // Squat
 "Finish Workout" = "Finish Workout";

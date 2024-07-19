@@ -7,14 +7,18 @@
 
 import Foundation
 import Combine
+import AVFAudio
+import CoreMotion
 
 final class HomeViewModel: ObservableObject {
     
+    private var audioSession = AVAudioSession.sharedInstance()
+    
     @Published var selectedDevice = Device.iPhone
     @Published var isMotionSensorAvailable = true
-    @Published var isAirPodsAvailable = true
-    @Published var airPodsName = "Pepperpods"
-    @Published var showSettingButton = false
+    @Published var isAirPodsAvailable = false
+    @Published var airPodsName = ""
+    @Published var disableStartButton = true
     
     var devices: [Device] = [.iPhone, .airPods]
     
@@ -22,22 +26,16 @@ final class HomeViewModel: ObservableObject {
     
     init() {
         addSubscibers()
+        NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChanged), name: AVAudioSession.routeChangeNotification, object: audioSession)
+        audioRouteChanged()
+        updateMotionPermission()
     }
     
     private func addSubscibers() {
-        // 아이폰인 경우 && 모션 불가능
-        // 에어팟인 경우 모션 불가능
-        // !에어팟인 경우 모션 가능
-        
-        $isMotionSensorAvailable.sink { [weak self] motion in
-            guard let self = self else { return }
-            
-            if self.selectedDevice == .iPhone {
-                showSettingButton = self.isMotionSensorAvailable
-            } else if self.selectedDevice == .airPods {
-                showSettingButton = self.isAirPodsAvailable || !self.isMotionSensorAvailable
-            }
+        Publishers.CombineLatest($selectedDevice, $isAirPodsAvailable).map { device, airPodsConnected in
+            device == .airPods && !airPodsConnected
         }
+        .assign(to: \.disableStartButton, on: self)
         .store(in: &cancelBag)
     }
     
@@ -48,4 +46,43 @@ final class HomeViewModel: ObservableObject {
     func settingButtonTapped() {
         OSLevelRedirection.redirectToAppSettings()
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: AVAudioSession.routeChangeNotification, object: audioSession)
+    }
+}
+
+// MARK: Motion {
+extension HomeViewModel {
+    
+    func updateMotionPermission() {
+        switch CMMotionActivityManager.authorizationStatus() {
+        case .authorized:
+            self.isMotionSensorAvailable = true
+        default:
+            self.isMotionSensorAvailable = false
+        }
+    }
+}
+
+// MARK: AirPods
+extension HomeViewModel {
+    
+    @objc private func audioRouteChanged() {
+        let currentRoute = audioSession.currentRoute
+        for output in currentRoute.outputs {
+            if output.portType == .bluetoothA2DP {
+                DispatchQueue.main.async {
+                    self.isAirPodsAvailable = true
+                    self.airPodsName = output.portName
+                }
+                return
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.isAirPodsAvailable = false
+        }
+    }
+    
 }

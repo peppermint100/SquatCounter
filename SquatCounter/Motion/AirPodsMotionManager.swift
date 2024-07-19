@@ -11,51 +11,38 @@ import Combine
 
 final class AirPodsMotionManager: MotionManager, ObservableObject {
     
+    var descendingThreshold = -0.003
+    var bottomThreshold = -0.001
+    var ascendingThreshold = 0.04
+    
     @Published var isActive: Bool = false
     let accelerationSubject = PassthroughSubject<Double, Never>()
+    private var timerCancellable: AnyCancellable?
     
     private let cmManager = CMHeadphoneMotionManager()
     
-    var isMotionSensorPermitted: Bool = false
-    var isDeviceAvailable: Bool = false
-    
-    init() {
-        self.isDeviceAvailable = cmManager.isDeviceMotionAvailable
-        updateMotionSensorPermission()
-    }
-    
-    private func updateMotionSensorPermission() {
-        cmManager.startDeviceMotionUpdates(to: .main) { [weak self] _, error in
-            if let error = error {
-                print(error.localizedDescription)
-                self?.isMotionSensorPermitted = false
-                self?.isDeviceAvailable = false
-            } else {
-                self?.isMotionSensorPermitted = true
-                self?.isDeviceAvailable = true
-            }
-        }
-        cmManager.stopDeviceMotionUpdates()
-    }
-    
     func startMotionUpdates() {
         isActive = true
-        cmManager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in
-            if let error = error {
-                print(error.localizedDescription)
-                self?.isDeviceAvailable = false
-                self?.isMotionSensorPermitted = false
-                return
+        cmManager.startDeviceMotionUpdates()
+        timerCancellable = Timer.publish(every: 0.5, on: .current, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                self?.fetchMotionData()
             }
-            
-            if let motion = motion {
-                self?.accelerationSubject.send(motion.userAcceleration.y)
-            }
+    }
+    
+    private func fetchMotionData() {
+        if let deviceMotion = cmManager.deviceMotion {
+            accelerationSubject.send(deviceMotion.userAcceleration.y)
         }
     }
     
     func stopMotionUpdates() {
         isActive = false
         cmManager.stopDeviceMotionUpdates()
+    }
+    
+    deinit {
+        timerCancellable?.cancel()
     }
 }

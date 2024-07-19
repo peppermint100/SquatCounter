@@ -10,7 +10,7 @@ import SwiftUI
 struct SetGoalSheetView: View {
     
     @EnvironmentObject private var router: HomeRouter
-    @AppStorage(UserDefaultsKey.goal) private var goal = UserDefaults.standard.integer(forKey: UserDefaultsKey.goal)
+    @State private var goal = UserDefaults.standard.integer(forKey: UserDefaultsKey.goal)
     private let goals = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     
     var body: some View {
@@ -25,6 +25,17 @@ struct SetGoalSheetView: View {
                         }
                     }
                     .pickerStyle(.wheel)
+                    
+                    Button(action: {
+                        UserDefaults.standard.setValue(goal, forKey: UserDefaultsKey.goal)
+                        router.dismiss()
+                    }, label: {
+                        Text(R.string.localizable.confirm)
+                            .font(.headline)
+                            .fontWeight(.regular)
+                            .borderedButton()
+                            .frame(width: geo.size.width * 0.6, height: 40)
+                    })
                 }
             }
         }
