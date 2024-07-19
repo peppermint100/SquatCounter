@@ -13,6 +13,6 @@ struct SquatResult {
     let duration: TimeInterval
     
     var interval: Double {
-        Double(count) / duration
+        duration / Double(count)
     }
 }

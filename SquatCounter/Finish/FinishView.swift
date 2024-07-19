@@ -13,7 +13,6 @@ struct FinishView: View {
     @ObservedObject private var vm: FinishViewModel
     
     @State private var trim: CGFloat = 0.0
-    
     @State private var animate = false
     
     init(result: SquatResult) {
