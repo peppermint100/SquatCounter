@@ -9,14 +9,31 @@ import SwiftUI
 
 struct SettingView: View {
     
+    @StateObject private var router = SettingRouter()
+    @StateObject private var vm = SettingViewModel()
+    
     var body: some View {
-        ZStack {
-            R.color.backgroundColor.color
-            
-            GeometryReader { geo in
-                VStack {
-                    navigationBar
+        NavigationStack(path: $router.path) {
+            ZStack {
+                R.color.backgroundColor.color
+                    .ignoresSafeArea()
+                
+                GeometryReader { geo in
+                    VStack {
+                        navigationBar
+                        
+                        VStack {
+                            SettingItemNavigationRowView(title: R.string.localizable.soundSetting(), selectedOption: vm.currentSound.title)
+                                .onTapGesture {
+                                    router.push(.sound($vm.currentSound))
+                                }
+                        }
+                        .padding()
+                    }
                 }
+            }
+            .navigationDestination(for: SettingRouter.Page.self) { page in
+                router.build(page)
             }
         }
     }

@@ -43,3 +43,14 @@
 "Interval" = "Interval";
 "Time" = "Time";
 "Workout Result" = "운동 결과";
+
+// Setting
+"Blop" = "블롭";
+"Coin" = "코인";
+"Correct1" = "정답 1";
+"Correct2" = "정답 2";
+"JumpHigh" = "점프 하이";
+"Stapler" = "스테이플러";
+"Woosh" = "휘두르는 소리";
+"MarioJumping" = "마리오 점프";
+"Sound Setting" = "사운드 설정";

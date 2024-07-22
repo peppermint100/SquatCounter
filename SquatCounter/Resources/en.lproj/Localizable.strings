@@ -43,3 +43,14 @@
 "Interval" = "Interval";
 "Time" = "Time";
 "Workout Result" = "Result";
+
+// Setting
+"Blop" = "Blop";
+"Coin" = "Coin";
+"Correct1" = "Correct 1";
+"Correct2" = "Correct 2";
+"JumpHigh" = "Jump High";
+"Stapler" = "Stapler";
+"Woosh" = "Woosh";
+"MarioJumping" = "Mario Jumping";
+"Sound Setting" = "Sound Setting";

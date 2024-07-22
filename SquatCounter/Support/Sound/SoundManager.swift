@@ -8,7 +8,7 @@
 import Foundation
 import AVFoundation
 
-enum SoundType: String {
+enum SoundType: String, CaseIterable, Identifiable {
     case marioJumping = "MarioJumping"
     case blop = "Blop"
     case correct1 = "Correct1"
@@ -16,6 +16,29 @@ enum SoundType: String {
     case jumpHigh = "JumpHigh"
     case stapler = "Stapler"
     case woosh = "Woosh"
+    
+    var id: String {
+        self.rawValue
+    }
+    
+    var title: String {
+        switch self {
+        case .marioJumping:
+            R.string.localizable.marioJumping()
+        case .blop:
+            R.string.localizable.blop()
+        case .correct1:
+            R.string.localizable.correct1()
+        case .correct2:
+            R.string.localizable.correct2()
+        case .jumpHigh:
+            R.string.localizable.jumpHigh()
+        case .stapler:
+            R.string.localizable.stapler()
+        case .woosh:
+            R.string.localizable.woosh()
+        }
+    }
 }
 
 protocol SoundManagerDelegate: AnyObject {
@@ -46,6 +69,7 @@ final class SoundManager: NSObject {
     
     private func initSoundPlayer(with url: URL) {
         do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
             soundPlayer = try AVAudioPlayer(contentsOf: url)
             soundPlayer?.prepareToPlay()
         } catch let error {

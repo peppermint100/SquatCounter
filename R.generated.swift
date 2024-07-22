@@ -73,7 +73,7 @@ struct _R {
       var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
     }
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 28 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 37 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
 
@@ -98,6 +98,13 @@ struct _R {
       /// Locales: en, ko
       var airpodsMotionSensorHeadline: RswiftResources.StringResource { .init(key: "AirpodsMotionSensorHeadline", tableName: "Localizable", source: source, developmentValue: "AirPods Motion Sensor", comment: nil) }
 
+      /// en translation: Blop
+      ///
+      /// Key: Blop
+      ///
+      /// Locales: en, ko
+      var blop: RswiftResources.StringResource { .init(key: "Blop", tableName: "Localizable", source: source, developmentValue: "Blop", comment: nil) }
+
       /// en translation: Bluetooth
       ///
       /// Key: Bluetooth
@@ -119,6 +126,13 @@ struct _R {
       /// Locales: en, ko
       var chooseYourDevice: RswiftResources.StringResource { .init(key: "Choose Your Device", tableName: "Localizable", source: source, developmentValue: "Choose Your Device", comment: nil) }
 
+      /// en translation: Coin
+      ///
+      /// Key: Coin
+      ///
+      /// Locales: en, ko
+      var coin: RswiftResources.StringResource { .init(key: "Coin", tableName: "Localizable", source: source, developmentValue: "Coin", comment: nil) }
+
       /// en translation: Confirm
       ///
       /// Key: Confirm
@@ -132,6 +146,20 @@ struct _R {
       ///
       /// Locales: en, ko
       var confirmFinishWorkout: RswiftResources.StringResource { .init(key: "Confirm Finish Workout", tableName: "Localizable", source: source, developmentValue: "Would you like to finish your workout?", comment: nil) }
+
+      /// en translation: Correct 1
+      ///
+      /// Key: Correct1
+      ///
+      /// Locales: en, ko
+      var correct1: RswiftResources.StringResource { .init(key: "Correct1", tableName: "Localizable", source: source, developmentValue: "Correct 1", comment: nil) }
+
+      /// en translation: Correct 2
+      ///
+      /// Key: Correct2
+      ///
+      /// Locales: en, ko
+      var correct2: RswiftResources.StringResource { .init(key: "Correct2", tableName: "Localizable", source: source, developmentValue: "Correct 2", comment: nil) }
 
       /// en translation: Finish
       ///
@@ -160,6 +188,20 @@ struct _R {
       ///
       /// Locales: en, ko
       var interval: RswiftResources.StringResource { .init(key: "Interval", tableName: "Localizable", source: source, developmentValue: "Interval", comment: nil) }
+
+      /// en translation: Jump High
+      ///
+      /// Key: JumpHigh
+      ///
+      /// Locales: en, ko
+      var jumpHigh: RswiftResources.StringResource { .init(key: "JumpHigh", tableName: "Localizable", source: source, developmentValue: "Jump High", comment: nil) }
+
+      /// en translation: Mario Jumping
+      ///
+      /// Key: MarioJumping
+      ///
+      /// Locales: en, ko
+      var marioJumping: RswiftResources.StringResource { .init(key: "MarioJumping", tableName: "Localizable", source: source, developmentValue: "Mario Jumping", comment: nil) }
 
       /// en translation: Motion Sensor
       ///
@@ -231,6 +273,20 @@ struct _R {
       /// Locales: en, ko
       var setting: RswiftResources.StringResource { .init(key: "Setting", tableName: "Localizable", source: source, developmentValue: "Setting", comment: nil) }
 
+      /// en translation: Sound Setting
+      ///
+      /// Key: Sound Setting
+      ///
+      /// Locales: en, ko
+      var soundSetting: RswiftResources.StringResource { .init(key: "Sound Setting", tableName: "Localizable", source: source, developmentValue: "Sound Setting", comment: nil) }
+
+      /// en translation: Stapler
+      ///
+      /// Key: Stapler
+      ///
+      /// Locales: en, ko
+      var stapler: RswiftResources.StringResource { .init(key: "Stapler", tableName: "Localizable", source: source, developmentValue: "Stapler", comment: nil) }
+
       /// en translation: Start
       ///
       /// Key: Start
@@ -244,6 +300,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var time: RswiftResources.StringResource { .init(key: "Time", tableName: "Localizable", source: source, developmentValue: "Time", comment: nil) }
+
+      /// en translation: Woosh
+      ///
+      /// Key: Woosh
+      ///
+      /// Locales: en, ko
+      var woosh: RswiftResources.StringResource { .init(key: "Woosh", tableName: "Localizable", source: source, developmentValue: "Woosh", comment: nil) }
 
       /// en translation: Result
       ///
