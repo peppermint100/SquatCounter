@@ -73,7 +73,7 @@ struct _R {
       var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
     }
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 27 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 28 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
 
@@ -244,6 +244,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var time: RswiftResources.StringResource { .init(key: "Time", tableName: "Localizable", source: source, developmentValue: "Time", comment: nil) }
+
+      /// en translation: Result
+      ///
+      /// Key: Workout Result
+      ///
+      /// Locales: en, ko
+      var workoutResult: RswiftResources.StringResource { .init(key: "Workout Result", tableName: "Localizable", source: source, developmentValue: "Result", comment: nil) }
 
       /// en translation: iPhone
       ///

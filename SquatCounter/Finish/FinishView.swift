@@ -29,6 +29,14 @@ struct FinishView: View {
                 let buttonWidth = geo.size.width * 0.7
                 
                 VStack {
+                    HStack {
+                        Text(R.string.localizable.workoutResult)
+                            .font(.title)
+                            .fontWeight(.bold)
+                        Spacer()
+                    }
+                    .padding(20)
+                    
                     Spacer()
                     progress(circleSize: circleSize)
                         .frame(height: geo.size.height * 0.5)

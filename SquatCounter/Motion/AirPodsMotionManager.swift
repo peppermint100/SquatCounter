@@ -9,22 +9,25 @@ import Foundation
 import CoreMotion
 import Combine
 
-final class AirPodsMotionManager: MotionManager, ObservableObject {
+final class AirPodsMotionManager: MotionManager {
     
     var descendingThreshold = -0.003
     var bottomThreshold = -0.001
     var ascendingThreshold = 0.04
     
-    @Published var isActive: Bool = false
+
     let accelerationSubject = PassthroughSubject<Double, Never>()
     private var timerCancellable: AnyCancellable?
     
     private let cmManager = CMHeadphoneMotionManager()
     
+    var isActive: Bool {
+        cmManager.isDeviceMotionActive
+    }
+    
     func startMotionUpdates() {
-        isActive = true
         cmManager.startDeviceMotionUpdates()
-        timerCancellable = Timer.publish(every: 0.5, on: .current, in: .common)
+        timerCancellable = Timer.publish(every: 0.35, on: .current, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.fetchMotionData()
@@ -38,7 +41,6 @@ final class AirPodsMotionManager: MotionManager, ObservableObject {
     }
     
     func stopMotionUpdates() {
-        isActive = false
         cmManager.stopDeviceMotionUpdates()
     }
     
