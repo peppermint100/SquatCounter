@@ -36,8 +36,10 @@
 // Squat
 "Finish Workout" = "종료";
 "Finish" = "종료";
+"Confirm Finish Workout" = "종료하시겠습니까?";
 
 // Finish
 "Return" = "돌아가기";
 "Interval" = "Interval";
 "Time" = "Time";
+"Workout Result" = "운동 결과";

@@ -9,24 +9,26 @@ import Foundation
 import CoreMotion
 import Combine
 
-final class iPhoneMotionManager: MotionManager, ObservableObject {
+final class iPhoneMotionManager: MotionManager {
     
-    var descendingThreshold = -1.1
-    var bottomThreshold = -0.1
-    var ascendingThreshold = -0.7
+    var descendingThreshold = -0.1
+    var bottomThreshold = -0.03
+    var ascendingThreshold = 0.06
     
-    @Published var isActive: Bool = false
     let accelerationSubject = PassthroughSubject<Double, Never>()
     
     private let cmManager = CMMotionManager()
     
+    var isActive: Bool {
+        cmManager.isDeviceMotionActive
+    }
+    
     init() {
-        cmManager.deviceMotionUpdateInterval = 0.5
+        cmManager.deviceMotionUpdateInterval = 0.25
     }
     
     func startMotionUpdates() {
-        isActive = true
-        cmManager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in
+        cmManager.startDeviceMotionUpdates(to: .current!) { [weak self] motion, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -39,7 +41,6 @@ final class iPhoneMotionManager: MotionManager, ObservableObject {
     }
     
     func stopMotionUpdates() {
-        isActive = false
         cmManager.stopDeviceMotionUpdates()
     }
 }

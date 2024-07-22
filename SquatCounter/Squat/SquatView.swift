@@ -10,10 +10,10 @@ import SwiftUI
 struct SquatView: View {
     
     @EnvironmentObject private var router: HomeRouter
-    @ObservedObject private var vm: SquatViewModel
+    @StateObject private var vm: SquatViewModel
     
     init(device: Device) {
-        self.vm = SquatViewModel(device: device)
+        _vm = StateObject(wrappedValue: SquatViewModel(device: device))
     }
     
     var body: some View {

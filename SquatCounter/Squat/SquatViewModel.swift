@@ -11,27 +11,23 @@ import AVFoundation
 
 final class SquatViewModel: ObservableObject {
     
-    private let descendingThreshold = -0.003
-    private let bottomThreshold = -0.001
-    private let ascendingThreshold = 0.04
-    
-    private let motionManager: MotionManager
+    let motionManager: MotionManager
     private var cancelBag = Set<AnyCancellable>()
     private let startedTime = Date.now
     
     let finishSquatTrigger = PassthroughSubject<SquatResult, Never>()
-    private let timerPublisher = Timer.publish(every: 1.0, on: .current, in: .common).autoconnect()
+    private var timerCancellable: AnyCancellable?
     
     var device: Device
-    @Published var squatPhase: SquatPhase = .idle
-    @Published var isSquating = false
+    var squatPhase: SquatPhase = .idle
+    var isSquating = false
     @Published var squatCount = 0
     
     @Published var sound = UserDefaults.standard.bool(forKey: UserDefaultsKey.sound)
     @Published var vibrate = UserDefaults.standard.bool(forKey: UserDefaultsKey.vibrate)
     
     @Published var showAlert = false
-    @Published var alertValues = AlertValues.empty()
+    var alertValues = AlertValues.empty()
     
     private var soundManagers = [SoundManager]()
     private var duration: TimeInterval = 0
@@ -75,39 +71,43 @@ final class SquatViewModel: ObservableObject {
             }
             .store(in: &cancelBag)
         
-        timerPublisher.sink { [weak self] output in
-            guard let self = self else { return }
-            self.duration = output.timeIntervalSince(self.startedTime)
-        }
-        .store(in: &cancelBag)
+        timerCancellable = Timer.publish(every: 1.0, on: .current, in: .common).autoconnect()
+            .sink { [weak self] output in
+                guard let self = self else { return }
+                self.duration = output.timeIntervalSince(self.startedTime)
+            }
     }
     
     private func detectSquat(acceleration: Double) {
+        print(acceleration, " ", squatPhase)
         switch squatPhase {
-         case .idle:
-             if acceleration < descendingThreshold {
-                 squatPhase = .descending
-             }
-         case .descending:
-             if acceleration < bottomThreshold {
-                 squatPhase = .bottom
-             }
-         case .bottom:
-             if acceleration > ascendingThreshold {
-                 squatPhase = .ascending
-             }
-         case .ascending:
-             if acceleration < ascendingThreshold {
-                 squatPhase = .idle
-                 haptic(.success)
-                 playSound()
-                 squatCount += 1
-             }
-         }
+        case .idle:
+            if acceleration < motionManager.descendingThreshold {
+                squatPhase = .descending
+            }
+        case .descending:
+            if acceleration < motionManager.bottomThreshold {
+                squatPhase = .bottom
+            }
+        case .bottom:
+            if acceleration > motionManager.ascendingThreshold {
+                haptic(.success)
+                squatPhase = .ascending
+            }
+        case .ascending:
+            if acceleration < motionManager.ascendingThreshold {
+                DispatchQueue.main.async { [weak self] in
+                    self?.squatPhase = .idle
+                    self?.playSound()
+                    self?.squatCount += 1
+                }
+            }
+        }
     }
     
     func finishSquat() {
         motionManager.stopMotionUpdates()
+        timerCancellable?.cancel()
         finishSquatTrigger.send(
             SquatResult(count: squatCount, duration: duration)
         )
@@ -115,7 +115,7 @@ final class SquatViewModel: ObservableObject {
     
     func didTapFinishButton() {
         showAlert = true
-        alertValues = AlertValues(title: "종료하시겠습니까?", message: "")
+        alertValues = AlertValues(title: R.string.localizable.confirmFinishWorkout(), message: "")
         motionManager.stopMotionUpdates()
     }
     
@@ -125,6 +125,7 @@ final class SquatViewModel: ObservableObject {
     
     deinit {
         motionManager.stopMotionUpdates()
+        timerCancellable?.cancel()
     }
 }
 

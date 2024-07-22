@@ -11,7 +11,7 @@ struct SetGoalSheetView: View {
     
     @EnvironmentObject private var router: HomeRouter
     @State private var goal = UserDefaults.standard.integer(forKey: UserDefaultsKey.goal)
-    private let goals = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    private let goals = [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     
     var body: some View {
         ZStack {
