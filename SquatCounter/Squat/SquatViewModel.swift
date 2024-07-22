@@ -79,6 +79,7 @@ final class SquatViewModel: ObservableObject {
     }
     
     private func detectSquat(acceleration: Double) {
+        print(acceleration, " ", squatPhase)
         switch squatPhase {
         case .idle:
             if acceleration < motionManager.descendingThreshold {
@@ -90,14 +91,16 @@ final class SquatViewModel: ObservableObject {
             }
         case .bottom:
             if acceleration > motionManager.ascendingThreshold {
+                haptic(.success)
                 squatPhase = .ascending
             }
         case .ascending:
             if acceleration < motionManager.ascendingThreshold {
-                squatPhase = .idle
-                haptic(.success)
-                playSound()
-                squatCount += 1
+                DispatchQueue.main.async { [weak self] in
+                    self?.squatPhase = .idle
+                    self?.playSound()
+                    self?.squatCount += 1
+                }
             }
         }
     }

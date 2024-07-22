@@ -11,9 +11,9 @@ import Combine
 
 final class iPhoneMotionManager: MotionManager {
     
-    var descendingThreshold = -1.1
-    var bottomThreshold = -0.1
-    var ascendingThreshold = -0.7
+    var descendingThreshold = -0.1
+    var bottomThreshold = -0.03
+    var ascendingThreshold = 0.06
     
     let accelerationSubject = PassthroughSubject<Double, Never>()
     
@@ -24,18 +24,17 @@ final class iPhoneMotionManager: MotionManager {
     }
     
     init() {
-        cmManager.deviceMotionUpdateInterval = 0.35
+        cmManager.deviceMotionUpdateInterval = 0.25
     }
     
     func startMotionUpdates() {
-        cmManager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in
+        cmManager.startDeviceMotionUpdates(to: .current!) { [weak self] motion, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
             
             if let motion = motion {
-                print(motion.userAcceleration)
                 self?.accelerationSubject.send(motion.userAcceleration.y)
             }
         }

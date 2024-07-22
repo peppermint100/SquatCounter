@@ -11,7 +11,7 @@ import Combine
 
 final class AirPodsMotionManager: MotionManager {
     
-    var descendingThreshold = -0.003
+    var descendingThreshold = -0.01
     var bottomThreshold = -0.001
     var ascendingThreshold = 0.04
     
