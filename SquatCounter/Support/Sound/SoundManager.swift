@@ -10,6 +10,12 @@ import AVFoundation
 
 enum SoundType: String {
     case marioJumping = "MarioJumping"
+    case blop = "Blop"
+    case correct1 = "Correct1"
+    case correct2 = "Correct2"
+    case jumpHigh = "JumpHigh"
+    case stapler = "Stapler"
+    case woosh = "Woosh"
 }
 
 protocol SoundManagerDelegate: AnyObject {
@@ -22,11 +28,23 @@ final class SoundManager: NSObject {
     private var soundPlayer: AVAudioPlayer?
     
     override init() {
+        super.init()
         let currentSoundDefaults = UserDefaults.standard.string(forKey: UserDefaultsKey.currentSound) ?? SoundType.marioJumping.rawValue
         let currentSound = SoundType(rawValue: currentSoundDefaults)
         
         let url = Bundle.main.url(forResource: currentSound?.rawValue, withExtension: "mp3")!
-
+        
+        self.initSoundPlayer(with: url)
+    }
+    
+    convenience init(_ type: SoundType) {
+        let currentSound = SoundType(rawValue: type.rawValue)
+        let url = Bundle.main.url(forResource: currentSound?.rawValue, withExtension: "mp3")!
+        self.init()
+        self.initSoundPlayer(with: url)
+    }
+    
+    private func initSoundPlayer(with url: URL) {
         do {
             soundPlayer = try AVAudioPlayer(contentsOf: url)
             soundPlayer?.prepareToPlay()

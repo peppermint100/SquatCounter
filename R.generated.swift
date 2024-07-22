@@ -292,11 +292,32 @@ struct _R {
     var lightGray: RswiftResources.ColorResource { .init(name: "lightGray", path: [], bundle: bundle) }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 1 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 8 resource files.
   struct file {
     let bundle: Foundation.Bundle
 
+    /// Resource file `Blop.mp3`.
+    var blopMp3: RswiftResources.FileResource { .init(name: "Blop", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Coin.mp3`.
+    var coinMp3: RswiftResources.FileResource { .init(name: "Coin", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Correct1.mp3`.
+    var correct1Mp3: RswiftResources.FileResource { .init(name: "Correct1", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Correct2.mp3`.
+    var correct2Mp3: RswiftResources.FileResource { .init(name: "Correct2", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `JumpHigh.mp3`.
+    var jumpHighMp3: RswiftResources.FileResource { .init(name: "JumpHigh", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
     /// Resource file `MarioJumping.mp3`.
     var marioJumpingMp3: RswiftResources.FileResource { .init(name: "MarioJumping", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Stapler.mp3`.
+    var staplerMp3: RswiftResources.FileResource { .init(name: "Stapler", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Woosh.mp3`.
+    var wooshMp3: RswiftResources.FileResource { .init(name: "Woosh", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
   }
 }
