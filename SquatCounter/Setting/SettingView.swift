@@ -20,7 +20,7 @@ struct SettingView: View {
                 
                 GeometryReader { geo in
                     VStack {
-                        navigationBar
+                        LargeTitleNavigationBar(title: R.string.localizable.setting())
                         
                         VStack {
                             SettingItemNavigationRowView(title: R.string.localizable.soundSetting(), selectedOption: vm.currentSound.title)
@@ -42,16 +42,6 @@ struct SettingView: View {
 }
 
 private extension SettingView {
-    var navigationBar: some View {
-        HStack {
-            Text(R.string.localizable.setting)
-                .font(.title)
-                .fontWeight(.bold)
-            Spacer()
-        }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 10)
-    }
     
     var soundFeedback: some View {
         HStack {
