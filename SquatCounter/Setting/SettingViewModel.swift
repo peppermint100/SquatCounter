@@ -11,6 +11,8 @@ import Combine
 final class SettingViewModel: ObservableObject {
     
     @Published var currentSound = SoundType(rawValue: UserDefaults.standard.string(forKey: UserDefaultsKey.currentSound) ?? SoundType.marioJumping.rawValue)!
+    @Published var sound = UserDefaults.standard.bool(forKey: UserDefaultsKey.sound)
+    @Published var vibrate = UserDefaults.standard.bool(forKey: UserDefaultsKey.vibrate)
     
     private var cancelBag = Set<AnyCancellable>()
     
@@ -22,6 +24,16 @@ final class SettingViewModel: ObservableObject {
         
         $currentSound.sink {
             UserDefaults.standard.setValue($0.rawValue, forKey: UserDefaultsKey.currentSound)
+        }
+        .store(in: &cancelBag)
+        
+        $sound.sink {
+            UserDefaults.standard.setValue($0, forKey: UserDefaultsKey.sound)
+        }
+        .store(in: &cancelBag)
+        
+        $vibrate.sink {
+            UserDefaults.standard.setValue($0, forKey: UserDefaultsKey.vibrate)
         }
         .store(in: &cancelBag)
     }

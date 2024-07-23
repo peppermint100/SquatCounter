@@ -75,6 +75,7 @@ private extension SoundSettingView {
                     .font(.headline)
             }
         }
+        .padding(5)
     }
 }
 

@@ -27,6 +27,8 @@ struct SettingView: View {
                                 .onTapGesture {
                                     router.push(.sound($vm.currentSound))
                                 }
+                            soundFeedback
+                            hapticFeedback
                         }
                         .padding()
                     }
@@ -47,7 +49,30 @@ private extension SettingView {
                 .fontWeight(.bold)
             Spacer()
         }
-        .padding(20)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
+    }
+    
+    var soundFeedback: some View {
+        HStack {
+            Text(R.string.localizable.soundFeedback)
+                .fontWeight(.medium)
+                .foregroundStyle(.black)
+            Spacer()
+            Toggle(isOn: $vm.sound, label: {})
+                .tint(.black)
+        }
+    }
+    
+    var hapticFeedback: some View {
+        HStack {
+            Text(R.string.localizable.hapticFeedback)
+                .fontWeight(.medium)
+                .foregroundStyle(.black)
+            Spacer()
+            Toggle(isOn: $vm.vibrate, label: {})
+                .tint(.black)
+        }
     }
 }
 

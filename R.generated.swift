@@ -73,7 +73,7 @@ struct _R {
       var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
     }
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 37 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 39 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
 
@@ -175,6 +175,13 @@ struct _R {
       /// Locales: en, ko
       var finishWorkout: RswiftResources.StringResource { .init(key: "Finish Workout", tableName: "Localizable", source: source, developmentValue: "Finish Workout", comment: nil) }
 
+      /// en translation: Haptic Feedback
+      ///
+      /// Key: Haptic Feedback
+      ///
+      /// Locales: en, ko
+      var hapticFeedback: RswiftResources.StringResource { .init(key: "Haptic Feedback", tableName: "Localizable", source: source, developmentValue: "Haptic Feedback", comment: nil) }
+
       /// en translation: Home
       ///
       /// Key: Home
@@ -272,6 +279,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var setting: RswiftResources.StringResource { .init(key: "Setting", tableName: "Localizable", source: source, developmentValue: "Setting", comment: nil) }
+
+      /// en translation: Sound Feedback
+      ///
+      /// Key: Sound Feedback
+      ///
+      /// Locales: en, ko
+      var soundFeedback: RswiftResources.StringResource { .init(key: "Sound Feedback", tableName: "Localizable", source: source, developmentValue: "Sound Feedback", comment: nil) }
 
       /// en translation: Sound Setting
       ///
