@@ -82,6 +82,10 @@ final class SoundManager: NSObject {
             soundPlayer?.play()
         }
     }
+    
+    func playWithoutPermission() {
+        soundPlayer?.play()
+    }
 }
 
 extension SoundManager: AVAudioPlayerDelegate {
