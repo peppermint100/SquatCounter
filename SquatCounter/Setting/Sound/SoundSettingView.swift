@@ -21,7 +21,7 @@ struct SoundSettingView: View {
             
             GeometryReader { geo in
                 VStack {
-                    navigationBar
+                    InlineNavigationBar(title: R.string.localizable.soundSetting(), router: router)
                     
                     VStack {
                         ForEach(SoundType.allCases) { soundType in
@@ -51,34 +51,7 @@ struct SoundSettingView: View {
     }
 }
 
-private extension SoundSettingView {
-    
-    var navigationBar: some View {
-        ZStack {
-            HStack {
-                Symbols.chevronLeft
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 16, height: 16)
-                    .fontWeight(.semibold)
-                    .padding(.trailing, 20)
-                    .background(Color.clear.contentShape(Rectangle()))
-                    .onTapGesture {
-                        router.pop()
-                    }
-                Spacer()
-            }
-            .padding(.horizontal)
-            
-            HStack {
-                Text(R.string.localizable.soundSetting)
-                    .font(.headline)
-            }
-        }
-        .padding(5)
-    }
-}
-
 #Preview {
     SoundSettingView(sound: .constant(.blop))
+        .environmentObject(SettingRouter())
 }

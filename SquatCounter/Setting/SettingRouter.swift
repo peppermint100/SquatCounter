@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-final class SettingRouter: ObservableObject {
+final class SettingRouter: ObservableObject, Router {
     
     @Published var path = NavigationPath()
     
