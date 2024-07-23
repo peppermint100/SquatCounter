@@ -78,12 +78,6 @@ final class SoundManager: NSObject {
     }
     
     func play() {
-        if UserDefaults.standard.bool(forKey: UserDefaultsKey.sound) {
-            soundPlayer?.play()
-        }
-    }
-    
-    func playWithoutPermission() {
         soundPlayer?.play()
     }
 }

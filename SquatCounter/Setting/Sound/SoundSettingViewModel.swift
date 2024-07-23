@@ -13,7 +13,7 @@ final class SoundSettingViewModel: ObservableObject {
     
     func playSound(_ type: SoundType) {
         let soundManager = SoundManager(type)
-        soundManager.playWithoutPermission()
+        soundManager.play()
         soundManagers.append(soundManager)
     }
 }

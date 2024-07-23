@@ -51,16 +51,6 @@ final class SquatViewModel: ObservableObject {
         }
         .store(in: &cancelBag)
         
-        $sound.sink {
-            UserDefaults.standard.set($0, forKey: UserDefaultsKey.sound)
-        }
-        .store(in: &cancelBag)
-        
-        $vibrate.sink {
-            UserDefaults.standard.set($0, forKey: UserDefaultsKey.vibrate)
-        }
-        .store(in: &cancelBag)
-        
         $squatCount
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .sink { [weak self] count in
@@ -91,15 +81,20 @@ final class SquatViewModel: ObservableObject {
             }
         case .bottom:
             if acceleration > motionManager.ascendingThreshold {
-                haptic(.success)
+                if vibrate {
+                    haptic(.success)
+                }
                 squatPhase = .ascending
             }
         case .ascending:
             if acceleration < motionManager.ascendingThreshold {
                 DispatchQueue.main.async { [weak self] in
-                    self?.squatPhase = .idle
-                    self?.playSound()
-                    self?.squatCount += 1
+                    guard let self = self else { return }
+                    self.squatPhase = .idle
+                    self.squatCount += 1
+                    if self.sound {
+                        self.playSound()
+                    }
                 }
             }
         }
