@@ -13,4 +13,6 @@ enum UserDefaultsKey {
     static let sound = "sound"
     static let vibrate = "vibrate"
     static let currentSound = "currentSound"
+    static let iPhoneMotionSensitivity = "iPhoneMotionSensitivity"
+    static let airPodsMotionSensitivity = "airPodsMotionSensitivity"
 }

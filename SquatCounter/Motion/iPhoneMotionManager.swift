@@ -11,9 +11,10 @@ import Combine
 
 final class iPhoneMotionManager: MotionManager {
     
-    var descendingThreshold = -0.1
-    var bottomThreshold = -0.03
-    var ascendingThreshold = 0.06
+    var descendingThreshold: Double
+    var bottomThreshold: Double
+    var ascendingThreshold: Double
+    var motionSensitivity: MotionSensitivity = SettingManager.getiPhoneMotionSensitivity()
     
     let accelerationSubject = PassthroughSubject<Double, Never>()
     
@@ -25,6 +26,9 @@ final class iPhoneMotionManager: MotionManager {
     
     init() {
         cmManager.deviceMotionUpdateInterval = 0.25
+        descendingThreshold = motionSensitivity.iPhoneThreshold.descending
+        ascendingThreshold = motionSensitivity.iPhoneThreshold.ascending
+        bottomThreshold = motionSensitivity.iPhoneThreshold.bottom
     }
     
     func startMotionUpdates() {

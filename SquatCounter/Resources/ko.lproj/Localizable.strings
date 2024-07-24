@@ -43,3 +43,30 @@
 "Interval" = "Interval";
 "Time" = "Time";
 "Workout Result" = "운동 결과";
+
+// Setting
+"Blop" = "블롭";
+"Coin" = "코인";
+"Correct1" = "정답 1";
+"Correct2" = "정답 2";
+"JumpHigh" = "점프 하이";
+"Stapler" = "스테이플러";
+"Woosh" = "휘두르는 소리";
+"MarioJumping" = "마리오 점프";
+"Sound Setting" = "사운드 설정";
+"Sound Feedback" = "사운드 피드백";
+"Haptic Feedback" = "햅틱 피드백";
+"AirPods Motion Sensitivity" = "AirPods 모션 민감도";
+"iPhone Motion Sensitivity" = "iPhone 모션 민감도";
+"Very Low" = "매우 낮음";
+"Low" = "낮음";
+"Medium" = "중간";
+"High" = "높음";
+"Very High" = "매우 높음";
+"Adjust iPhone Motion Sensitivity" = "iPhone 모션 민감도를 조정하세요.";
+"Adjust AirPods Motion Sensitivity" = "AirPods 모션 민감도를 조정하세요.";
+"Sensitivity Description" = "민감도가 높을 수록 디바이스를 조금만 움직여도 스쿼트 움직임을 감지합니다.";
+"Sound" = "소리";
+"Vibrate" = "진동";
+"Motion" = "모션";
+"Supported Heaphones Description" = "이 기능은 모션 센서가 있는 AirPods 3세대, AirPods Pro, AirPods Max, Beats Fit Pro를 지원합니다.";

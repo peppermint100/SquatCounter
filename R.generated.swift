@@ -73,9 +73,23 @@ struct _R {
       var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
     }
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 28 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 53 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
+
+      /// en translation: Adjust AirPods Motion Sensitivity
+      ///
+      /// Key: Adjust AirPods Motion Sensitivity
+      ///
+      /// Locales: en, ko
+      var adjustAirPodsMotionSensitivity: RswiftResources.StringResource { .init(key: "Adjust AirPods Motion Sensitivity", tableName: "Localizable", source: source, developmentValue: "Adjust AirPods Motion Sensitivity", comment: nil) }
+
+      /// en translation: Adjust iPhone Motion Sensitivity
+      ///
+      /// Key: Adjust iPhone Motion Sensitivity
+      ///
+      /// Locales: en, ko
+      var adjustIPhoneMotionSensitivity: RswiftResources.StringResource { .init(key: "Adjust iPhone Motion Sensitivity", tableName: "Localizable", source: source, developmentValue: "Adjust iPhone Motion Sensitivity", comment: nil) }
 
       /// en translation: AirPods
       ///
@@ -83,6 +97,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var airPods: RswiftResources.StringResource { .init(key: "AirPods", tableName: "Localizable", source: source, developmentValue: "AirPods", comment: nil) }
+
+      /// en translation: AirPods Motion Sensitivity
+      ///
+      /// Key: AirPods Motion Sensitivity
+      ///
+      /// Locales: en, ko
+      var airPodsMotionSensitivity: RswiftResources.StringResource { .init(key: "AirPods Motion Sensitivity", tableName: "Localizable", source: source, developmentValue: "AirPods Motion Sensitivity", comment: nil) }
 
       /// en translation: Please wear both AirPods during your workout.
       ///
@@ -97,6 +118,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var airpodsMotionSensorHeadline: RswiftResources.StringResource { .init(key: "AirpodsMotionSensorHeadline", tableName: "Localizable", source: source, developmentValue: "AirPods Motion Sensor", comment: nil) }
+
+      /// en translation: Blop
+      ///
+      /// Key: Blop
+      ///
+      /// Locales: en, ko
+      var blop: RswiftResources.StringResource { .init(key: "Blop", tableName: "Localizable", source: source, developmentValue: "Blop", comment: nil) }
 
       /// en translation: Bluetooth
       ///
@@ -119,6 +147,13 @@ struct _R {
       /// Locales: en, ko
       var chooseYourDevice: RswiftResources.StringResource { .init(key: "Choose Your Device", tableName: "Localizable", source: source, developmentValue: "Choose Your Device", comment: nil) }
 
+      /// en translation: Coin
+      ///
+      /// Key: Coin
+      ///
+      /// Locales: en, ko
+      var coin: RswiftResources.StringResource { .init(key: "Coin", tableName: "Localizable", source: source, developmentValue: "Coin", comment: nil) }
+
       /// en translation: Confirm
       ///
       /// Key: Confirm
@@ -132,6 +167,20 @@ struct _R {
       ///
       /// Locales: en, ko
       var confirmFinishWorkout: RswiftResources.StringResource { .init(key: "Confirm Finish Workout", tableName: "Localizable", source: source, developmentValue: "Would you like to finish your workout?", comment: nil) }
+
+      /// en translation: Correct 1
+      ///
+      /// Key: Correct1
+      ///
+      /// Locales: en, ko
+      var correct1: RswiftResources.StringResource { .init(key: "Correct1", tableName: "Localizable", source: source, developmentValue: "Correct 1", comment: nil) }
+
+      /// en translation: Correct 2
+      ///
+      /// Key: Correct2
+      ///
+      /// Locales: en, ko
+      var correct2: RswiftResources.StringResource { .init(key: "Correct2", tableName: "Localizable", source: source, developmentValue: "Correct 2", comment: nil) }
 
       /// en translation: Finish
       ///
@@ -147,6 +196,20 @@ struct _R {
       /// Locales: en, ko
       var finishWorkout: RswiftResources.StringResource { .init(key: "Finish Workout", tableName: "Localizable", source: source, developmentValue: "Finish Workout", comment: nil) }
 
+      /// en translation: Haptic Feedback
+      ///
+      /// Key: Haptic Feedback
+      ///
+      /// Locales: en, ko
+      var hapticFeedback: RswiftResources.StringResource { .init(key: "Haptic Feedback", tableName: "Localizable", source: source, developmentValue: "Haptic Feedback", comment: nil) }
+
+      /// en translation: High
+      ///
+      /// Key: High
+      ///
+      /// Locales: en, ko
+      var high: RswiftResources.StringResource { .init(key: "High", tableName: "Localizable", source: source, developmentValue: "High", comment: nil) }
+
       /// en translation: Home
       ///
       /// Key: Home
@@ -160,6 +223,41 @@ struct _R {
       ///
       /// Locales: en, ko
       var interval: RswiftResources.StringResource { .init(key: "Interval", tableName: "Localizable", source: source, developmentValue: "Interval", comment: nil) }
+
+      /// en translation: Jump High
+      ///
+      /// Key: JumpHigh
+      ///
+      /// Locales: en, ko
+      var jumpHigh: RswiftResources.StringResource { .init(key: "JumpHigh", tableName: "Localizable", source: source, developmentValue: "Jump High", comment: nil) }
+
+      /// en translation: Low
+      ///
+      /// Key: Low
+      ///
+      /// Locales: en, ko
+      var low: RswiftResources.StringResource { .init(key: "Low", tableName: "Localizable", source: source, developmentValue: "Low", comment: nil) }
+
+      /// en translation: Mario Jumping
+      ///
+      /// Key: MarioJumping
+      ///
+      /// Locales: en, ko
+      var marioJumping: RswiftResources.StringResource { .init(key: "MarioJumping", tableName: "Localizable", source: source, developmentValue: "Mario Jumping", comment: nil) }
+
+      /// en translation: Medium
+      ///
+      /// Key: Medium
+      ///
+      /// Locales: en, ko
+      var medium: RswiftResources.StringResource { .init(key: "Medium", tableName: "Localizable", source: source, developmentValue: "Medium", comment: nil) }
+
+      /// en translation: Motion
+      ///
+      /// Key: Motion
+      ///
+      /// Locales: en, ko
+      var motion: RswiftResources.StringResource { .init(key: "Motion", tableName: "Localizable", source: source, developmentValue: "Motion", comment: nil) }
 
       /// en translation: Motion Sensor
       ///
@@ -217,6 +315,13 @@ struct _R {
       /// Locales: en, ko
       var `return`: RswiftResources.StringResource { .init(key: "Return", tableName: "Localizable", source: source, developmentValue: "Return", comment: nil) }
 
+      /// en translation: The higher the sensitivity, the more easily the device will detect squat movements with even slight motions.
+      ///
+      /// Key: Sensitivity Description
+      ///
+      /// Locales: en, ko
+      var sensitivityDescription: RswiftResources.StringResource { .init(key: "Sensitivity Description", tableName: "Localizable", source: source, developmentValue: "The higher the sensitivity, the more easily the device will detect squat movements with even slight motions.", comment: nil) }
+
       /// en translation: Set Goal
       ///
       /// Key: Set Goal
@@ -231,6 +336,34 @@ struct _R {
       /// Locales: en, ko
       var setting: RswiftResources.StringResource { .init(key: "Setting", tableName: "Localizable", source: source, developmentValue: "Setting", comment: nil) }
 
+      /// en translation: Sound
+      ///
+      /// Key: Sound
+      ///
+      /// Locales: en, ko
+      var sound: RswiftResources.StringResource { .init(key: "Sound", tableName: "Localizable", source: source, developmentValue: "Sound", comment: nil) }
+
+      /// en translation: Sound Feedback
+      ///
+      /// Key: Sound Feedback
+      ///
+      /// Locales: en, ko
+      var soundFeedback: RswiftResources.StringResource { .init(key: "Sound Feedback", tableName: "Localizable", source: source, developmentValue: "Sound Feedback", comment: nil) }
+
+      /// en translation: Sound Setting
+      ///
+      /// Key: Sound Setting
+      ///
+      /// Locales: en, ko
+      var soundSetting: RswiftResources.StringResource { .init(key: "Sound Setting", tableName: "Localizable", source: source, developmentValue: "Sound Setting", comment: nil) }
+
+      /// en translation: Stapler
+      ///
+      /// Key: Stapler
+      ///
+      /// Locales: en, ko
+      var stapler: RswiftResources.StringResource { .init(key: "Stapler", tableName: "Localizable", source: source, developmentValue: "Stapler", comment: nil) }
+
       /// en translation: Start
       ///
       /// Key: Start
@@ -238,12 +371,47 @@ struct _R {
       /// Locales: en, ko
       var start: RswiftResources.StringResource { .init(key: "Start", tableName: "Localizable", source: source, developmentValue: "Start", comment: nil) }
 
+      /// en translation: This feature is supported on AirPods (3rd generation), AirPods Pro, AirPods Max, and Beats Fit Pro with motion sensors.
+      ///
+      /// Key: Supported Heaphones Description
+      ///
+      /// Locales: en, ko
+      var supportedHeaphonesDescription: RswiftResources.StringResource { .init(key: "Supported Heaphones Description", tableName: "Localizable", source: source, developmentValue: "This feature is supported on AirPods (3rd generation), AirPods Pro, AirPods Max, and Beats Fit Pro with motion sensors.", comment: nil) }
+
       /// en translation: Time
       ///
       /// Key: Time
       ///
       /// Locales: en, ko
       var time: RswiftResources.StringResource { .init(key: "Time", tableName: "Localizable", source: source, developmentValue: "Time", comment: nil) }
+
+      /// en translation: Very High
+      ///
+      /// Key: Very High
+      ///
+      /// Locales: en, ko
+      var veryHigh: RswiftResources.StringResource { .init(key: "Very High", tableName: "Localizable", source: source, developmentValue: "Very High", comment: nil) }
+
+      /// en translation: Very Low
+      ///
+      /// Key: Very Low
+      ///
+      /// Locales: en, ko
+      var veryLow: RswiftResources.StringResource { .init(key: "Very Low", tableName: "Localizable", source: source, developmentValue: "Very Low", comment: nil) }
+
+      /// en translation: Vibrate
+      ///
+      /// Key: Vibrate
+      ///
+      /// Locales: en, ko
+      var vibrate: RswiftResources.StringResource { .init(key: "Vibrate", tableName: "Localizable", source: source, developmentValue: "Vibrate", comment: nil) }
+
+      /// en translation: Woosh
+      ///
+      /// Key: Woosh
+      ///
+      /// Locales: en, ko
+      var woosh: RswiftResources.StringResource { .init(key: "Woosh", tableName: "Localizable", source: source, developmentValue: "Woosh", comment: nil) }
 
       /// en translation: Result
       ///
@@ -258,6 +426,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var iPhone: RswiftResources.StringResource { .init(key: "iPhone", tableName: "Localizable", source: source, developmentValue: "iPhone", comment: nil) }
+
+      /// en translation: iPhone Motion Sensitivity
+      ///
+      /// Key: iPhone Motion Sensitivity
+      ///
+      /// Locales: en, ko
+      var iPhoneMotionSensitivity: RswiftResources.StringResource { .init(key: "iPhone Motion Sensitivity", tableName: "Localizable", source: source, developmentValue: "iPhone Motion Sensitivity", comment: nil) }
 
       /// en translation: Please hold your iPhone properly during your workout.
       ///
@@ -292,11 +467,32 @@ struct _R {
     var lightGray: RswiftResources.ColorResource { .init(name: "lightGray", path: [], bundle: bundle) }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 1 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 8 resource files.
   struct file {
     let bundle: Foundation.Bundle
 
+    /// Resource file `Blop.mp3`.
+    var blopMp3: RswiftResources.FileResource { .init(name: "Blop", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Coin.mp3`.
+    var coinMp3: RswiftResources.FileResource { .init(name: "Coin", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Correct1.mp3`.
+    var correct1Mp3: RswiftResources.FileResource { .init(name: "Correct1", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Correct2.mp3`.
+    var correct2Mp3: RswiftResources.FileResource { .init(name: "Correct2", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `JumpHigh.mp3`.
+    var jumpHighMp3: RswiftResources.FileResource { .init(name: "JumpHigh", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
     /// Resource file `MarioJumping.mp3`.
     var marioJumpingMp3: RswiftResources.FileResource { .init(name: "MarioJumping", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Stapler.mp3`.
+    var staplerMp3: RswiftResources.FileResource { .init(name: "Stapler", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Woosh.mp3`.
+    var wooshMp3: RswiftResources.FileResource { .init(name: "Woosh", pathExtension: "mp3", bundle: bundle, locale: LocaleReference.none) }
   }
 }

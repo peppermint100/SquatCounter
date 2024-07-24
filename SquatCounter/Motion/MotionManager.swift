@@ -10,6 +10,7 @@ import Combine
 
 protocol MotionManager {
     
+    var motionSensitivity: MotionSensitivity { get set }
     var descendingThreshold: Double { get }
     var bottomThreshold: Double { get }
     var ascendingThreshold: Double { get }

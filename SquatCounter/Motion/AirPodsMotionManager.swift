@@ -11,15 +11,21 @@ import Combine
 
 final class AirPodsMotionManager: MotionManager {
     
-    var descendingThreshold = -0.01
-    var bottomThreshold = -0.001
-    var ascendingThreshold = 0.04
+    var motionSensitivity: MotionSensitivity = SettingManager.getAirPodsMotionSensitivity()
+    var descendingThreshold: Double
+    var bottomThreshold: Double
+    var ascendingThreshold: Double
     
-
     let accelerationSubject = PassthroughSubject<Double, Never>()
     private var timerCancellable: AnyCancellable?
     
     private let cmManager = CMHeadphoneMotionManager()
+    
+    init() {
+        descendingThreshold = motionSensitivity.airPodsThreshold.descending
+        ascendingThreshold = motionSensitivity.airPodsThreshold.ascending
+        bottomThreshold = motionSensitivity.airPodsThreshold.bottom
+    }
     
     var isActive: Bool {
         cmManager.isDeviceMotionActive
