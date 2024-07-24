@@ -56,3 +56,17 @@
 "Sound Setting" = "Sound Setting";
 "Sound Feedback" = "Sound Feedback";
 "Haptic Feedback" = "Haptic Feedback";
+"AirPods Motion Sensitivity" = "AirPods Motion Sensitivity";
+"iPhone Motion Sensitivity" = "iPhone Motion Sensitivity";
+"Very Low" = "Very Low";
+"Low" = "Low";
+"Medium" = "Medium";
+"High" = "High";
+"Very High" = "Very High";
+"Adjust iPhone Motion Sensitivity" = "Adjust iPhone Motion Sensitivity";
+"Adjust AirPods Motion Sensitivity" = "Adjust AirPods Motion Sensitivity";
+"Sensitivity Description" = "The higher the sensitivity, the more easily the device will detect squat movements with even slight motions.";
+"Sound" = "Sound";
+"Vibrate" = "Vibrate";
+"Motion" = "Motion";
+"Supported Heaphones Description" = "This feature is supported on AirPods (3rd generation), AirPods Pro, AirPods Max, and Beats Fit Pro with motion sensors.";

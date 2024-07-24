@@ -14,7 +14,7 @@ struct SettingItemNavigationRowView: View {
     
     var body: some View {
         HStack {
-            Text(R.string.localizable.soundSetting)
+            Text(title)
                 .fontWeight(.medium)
                 .foregroundStyle(.black)
             Spacer()
@@ -23,9 +23,8 @@ struct SettingItemNavigationRowView: View {
                 .foregroundStyle(.gray)
             Symbols.chevronRight
                 .foregroundStyle(.gray)
-                .fontWeight(.semibold)
         }
-        .padding(.vertical, 8)
+        .padding(.vertical, 5)
         .contentShape(Rectangle())
     }
 }

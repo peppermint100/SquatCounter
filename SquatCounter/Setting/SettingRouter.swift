@@ -22,9 +22,15 @@ final class SettingRouter: ObservableObject, Router {
             switch (lhs, rhs) {
             case let (.sound(lhsItem), .sound(rhsItem)):
                 return lhsItem.wrappedValue.rawValue == rhsItem.wrappedValue.rawValue
+            case let (.sensitivity(lhs1, lhs2), .sensitivity(rhs1, rhs2)):
+                return lhs1.rawValue == rhs1.rawValue && lhs2.wrappedValue.rawValue == rhs2.wrappedValue.rawValue
+            default:
+                return true
             }
         }
+        
         case sound(Binding<SoundType>)
+        case sensitivity(device: Device, motionSensitivity: Binding<MotionSensitivity>)
     }
     
     func push(_ page: Page) {
@@ -40,6 +46,9 @@ final class SettingRouter: ObservableObject, Router {
         switch page {
         case .sound(let sound):
             SoundSettingView(sound: sound)
+                .environmentObject(self)
+        case .sensitivity(let device, let motionSensitivity):
+            SensitivitySettingView(device: device, motionSensitivity: motionSensitivity)
                 .environmentObject(self)
         }
     }

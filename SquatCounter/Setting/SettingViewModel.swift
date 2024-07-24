@@ -14,6 +14,9 @@ final class SettingViewModel: ObservableObject {
     @Published var sound = UserDefaults.standard.bool(forKey: UserDefaultsKey.sound)
     @Published var vibrate = UserDefaults.standard.bool(forKey: UserDefaultsKey.vibrate)
     
+    @Published var iPhoneMotionSensitivity = SettingManager.getiPhoneMotionSensitivity()
+    @Published var airPodsMotionSensitivity = SettingManager.getAirPodsMotionSensitivity()
+    
     private var cancelBag = Set<AnyCancellable>()
     
     init() {
@@ -34,6 +37,16 @@ final class SettingViewModel: ObservableObject {
         
         $vibrate.sink {
             UserDefaults.standard.setValue($0, forKey: UserDefaultsKey.vibrate)
+        }
+        .store(in: &cancelBag)
+        
+        $iPhoneMotionSensitivity.sink {
+            UserDefaults.standard.setValue($0.rawValue, forKey: UserDefaultsKey.iPhoneMotionSensitivity)
+        }
+        .store(in: &cancelBag)
+        
+        $airPodsMotionSensitivity.sink {
+            UserDefaults.standard.setValue($0.rawValue, forKey: UserDefaultsKey.airPodsMotionSensitivity)
         }
         .store(in: &cancelBag)
     }

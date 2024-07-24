@@ -22,13 +22,32 @@ struct SettingView: View {
                     VStack {
                         LargeTitleNavigationBar(title: R.string.localizable.setting())
                         
-                        VStack {
-                            SettingItemNavigationRowView(title: R.string.localizable.soundSetting(), selectedOption: vm.currentSound.title)
-                                .onTapGesture {
-                                    router.push(.sound($vm.currentSound))
-                                }
-                            soundFeedback
-                            hapticFeedback
+                        VStack(spacing: 30) {
+                            VStack {
+                                sectionHeader(R.string.localizable.sound())
+                                SettingItemNavigationRowView(title: R.string.localizable.soundSetting(), selectedOption: vm.currentSound.title)
+                                    .onTapGesture {
+                                        router.push(.sound($vm.currentSound))
+                                    }
+                                soundFeedback
+                            }
+                            
+                            VStack {
+                                sectionHeader(R.string.localizable.vibrate())
+                                hapticFeedback
+                            }
+                            
+                            VStack {
+                                sectionHeader(R.string.localizable.motion())
+                                SettingItemNavigationRowView(title: R.string.localizable.iPhoneMotionSensitivity(), selectedOption: vm.iPhoneMotionSensitivity.title)
+                                    .onTapGesture {
+                                        router.push(.sensitivity(device: .iPhone, motionSensitivity: $vm.iPhoneMotionSensitivity))
+                                    }
+                                SettingItemNavigationRowView(title: R.string.localizable.airPodsMotionSensitivity(), selectedOption: vm.airPodsMotionSensitivity.title)
+                                    .onTapGesture {
+                                        router.push(.sensitivity(device: .airPods, motionSensitivity: $vm.airPodsMotionSensitivity))
+                                    }
+                            }
                         }
                         .padding()
                     }
@@ -62,6 +81,15 @@ private extension SettingView {
             Spacer()
             Toggle(isOn: $vm.vibrate, label: {})
                 .tint(.black)
+        }
+    }
+    
+    func sectionHeader(_ text: String) -> some View {
+        HStack {
+            Text(text)
+                .font(.subheadline)
+                .foregroundStyle(.gray)
+            Spacer()
         }
     }
 }

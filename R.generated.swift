@@ -73,9 +73,23 @@ struct _R {
       var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
     }
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 39 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 53 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
+
+      /// en translation: Adjust AirPods Motion Sensitivity
+      ///
+      /// Key: Adjust AirPods Motion Sensitivity
+      ///
+      /// Locales: en, ko
+      var adjustAirPodsMotionSensitivity: RswiftResources.StringResource { .init(key: "Adjust AirPods Motion Sensitivity", tableName: "Localizable", source: source, developmentValue: "Adjust AirPods Motion Sensitivity", comment: nil) }
+
+      /// en translation: Adjust iPhone Motion Sensitivity
+      ///
+      /// Key: Adjust iPhone Motion Sensitivity
+      ///
+      /// Locales: en, ko
+      var adjustIPhoneMotionSensitivity: RswiftResources.StringResource { .init(key: "Adjust iPhone Motion Sensitivity", tableName: "Localizable", source: source, developmentValue: "Adjust iPhone Motion Sensitivity", comment: nil) }
 
       /// en translation: AirPods
       ///
@@ -83,6 +97,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var airPods: RswiftResources.StringResource { .init(key: "AirPods", tableName: "Localizable", source: source, developmentValue: "AirPods", comment: nil) }
+
+      /// en translation: AirPods Motion Sensitivity
+      ///
+      /// Key: AirPods Motion Sensitivity
+      ///
+      /// Locales: en, ko
+      var airPodsMotionSensitivity: RswiftResources.StringResource { .init(key: "AirPods Motion Sensitivity", tableName: "Localizable", source: source, developmentValue: "AirPods Motion Sensitivity", comment: nil) }
 
       /// en translation: Please wear both AirPods during your workout.
       ///
@@ -182,6 +203,13 @@ struct _R {
       /// Locales: en, ko
       var hapticFeedback: RswiftResources.StringResource { .init(key: "Haptic Feedback", tableName: "Localizable", source: source, developmentValue: "Haptic Feedback", comment: nil) }
 
+      /// en translation: High
+      ///
+      /// Key: High
+      ///
+      /// Locales: en, ko
+      var high: RswiftResources.StringResource { .init(key: "High", tableName: "Localizable", source: source, developmentValue: "High", comment: nil) }
+
       /// en translation: Home
       ///
       /// Key: Home
@@ -203,12 +231,33 @@ struct _R {
       /// Locales: en, ko
       var jumpHigh: RswiftResources.StringResource { .init(key: "JumpHigh", tableName: "Localizable", source: source, developmentValue: "Jump High", comment: nil) }
 
+      /// en translation: Low
+      ///
+      /// Key: Low
+      ///
+      /// Locales: en, ko
+      var low: RswiftResources.StringResource { .init(key: "Low", tableName: "Localizable", source: source, developmentValue: "Low", comment: nil) }
+
       /// en translation: Mario Jumping
       ///
       /// Key: MarioJumping
       ///
       /// Locales: en, ko
       var marioJumping: RswiftResources.StringResource { .init(key: "MarioJumping", tableName: "Localizable", source: source, developmentValue: "Mario Jumping", comment: nil) }
+
+      /// en translation: Medium
+      ///
+      /// Key: Medium
+      ///
+      /// Locales: en, ko
+      var medium: RswiftResources.StringResource { .init(key: "Medium", tableName: "Localizable", source: source, developmentValue: "Medium", comment: nil) }
+
+      /// en translation: Motion
+      ///
+      /// Key: Motion
+      ///
+      /// Locales: en, ko
+      var motion: RswiftResources.StringResource { .init(key: "Motion", tableName: "Localizable", source: source, developmentValue: "Motion", comment: nil) }
 
       /// en translation: Motion Sensor
       ///
@@ -266,6 +315,13 @@ struct _R {
       /// Locales: en, ko
       var `return`: RswiftResources.StringResource { .init(key: "Return", tableName: "Localizable", source: source, developmentValue: "Return", comment: nil) }
 
+      /// en translation: The higher the sensitivity, the more easily the device will detect squat movements with even slight motions.
+      ///
+      /// Key: Sensitivity Description
+      ///
+      /// Locales: en, ko
+      var sensitivityDescription: RswiftResources.StringResource { .init(key: "Sensitivity Description", tableName: "Localizable", source: source, developmentValue: "The higher the sensitivity, the more easily the device will detect squat movements with even slight motions.", comment: nil) }
+
       /// en translation: Set Goal
       ///
       /// Key: Set Goal
@@ -279,6 +335,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var setting: RswiftResources.StringResource { .init(key: "Setting", tableName: "Localizable", source: source, developmentValue: "Setting", comment: nil) }
+
+      /// en translation: Sound
+      ///
+      /// Key: Sound
+      ///
+      /// Locales: en, ko
+      var sound: RswiftResources.StringResource { .init(key: "Sound", tableName: "Localizable", source: source, developmentValue: "Sound", comment: nil) }
 
       /// en translation: Sound Feedback
       ///
@@ -308,12 +371,40 @@ struct _R {
       /// Locales: en, ko
       var start: RswiftResources.StringResource { .init(key: "Start", tableName: "Localizable", source: source, developmentValue: "Start", comment: nil) }
 
+      /// en translation: This feature is supported on AirPods (3rd generation), AirPods Pro, AirPods Max, and Beats Fit Pro with motion sensors.
+      ///
+      /// Key: Supported Heaphones Description
+      ///
+      /// Locales: en, ko
+      var supportedHeaphonesDescription: RswiftResources.StringResource { .init(key: "Supported Heaphones Description", tableName: "Localizable", source: source, developmentValue: "This feature is supported on AirPods (3rd generation), AirPods Pro, AirPods Max, and Beats Fit Pro with motion sensors.", comment: nil) }
+
       /// en translation: Time
       ///
       /// Key: Time
       ///
       /// Locales: en, ko
       var time: RswiftResources.StringResource { .init(key: "Time", tableName: "Localizable", source: source, developmentValue: "Time", comment: nil) }
+
+      /// en translation: Very High
+      ///
+      /// Key: Very High
+      ///
+      /// Locales: en, ko
+      var veryHigh: RswiftResources.StringResource { .init(key: "Very High", tableName: "Localizable", source: source, developmentValue: "Very High", comment: nil) }
+
+      /// en translation: Very Low
+      ///
+      /// Key: Very Low
+      ///
+      /// Locales: en, ko
+      var veryLow: RswiftResources.StringResource { .init(key: "Very Low", tableName: "Localizable", source: source, developmentValue: "Very Low", comment: nil) }
+
+      /// en translation: Vibrate
+      ///
+      /// Key: Vibrate
+      ///
+      /// Locales: en, ko
+      var vibrate: RswiftResources.StringResource { .init(key: "Vibrate", tableName: "Localizable", source: source, developmentValue: "Vibrate", comment: nil) }
 
       /// en translation: Woosh
       ///
@@ -335,6 +426,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var iPhone: RswiftResources.StringResource { .init(key: "iPhone", tableName: "Localizable", source: source, developmentValue: "iPhone", comment: nil) }
+
+      /// en translation: iPhone Motion Sensitivity
+      ///
+      /// Key: iPhone Motion Sensitivity
+      ///
+      /// Locales: en, ko
+      var iPhoneMotionSensitivity: RswiftResources.StringResource { .init(key: "iPhone Motion Sensitivity", tableName: "Localizable", source: source, developmentValue: "iPhone Motion Sensitivity", comment: nil) }
 
       /// en translation: Please hold your iPhone properly during your workout.
       ///
