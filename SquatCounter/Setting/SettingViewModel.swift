@@ -63,6 +63,10 @@ final class SettingViewModel: ObservableObject {
             }
         }
     }
+    
+    func didTapPrivacyPolicy() {
+        sheetPresentTrigger.send(.privacyPolicy)
+    }
 }
 
 // MARK: Email
@@ -76,7 +80,6 @@ extension SettingViewModel {
     }
     
     func generateBody() -> String {
-        
         return String("""
                 Application Name: \(Bundle.main.displayName)
                 iOS: \(UIDevice.current.systemVersion)

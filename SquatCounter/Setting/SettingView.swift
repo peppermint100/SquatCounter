@@ -51,10 +51,14 @@ struct SettingView: View {
                             
                             VStack {
                                 sectionHeader(R.string.localizable.etc())
-                                HStack {
-                                    Text(R.string.localizable.privacyPolicy())
-                                    Spacer()
-                                }
+                                
+                                Button(action: {vm.didTapPrivacyPolicy()}, label: {
+                                    HStack {
+                                        Text(R.string.localizable.privacyPolicy())
+                                            .foregroundStyle(.black)
+                                        Spacer()
+                                    }
+                                })
                                 .padding(.vertical, 5)
                                 
                                 Button(action: {

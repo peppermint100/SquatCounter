@@ -36,7 +36,7 @@ final class SettingRouter: ObservableObject, Router {
         case .contactDeveloper:
             ContactDeveloperView()
         case .privacyPolicy:
-            ContactDeveloperView()
+            PrivacyPolicyView()
         }
     }
     
