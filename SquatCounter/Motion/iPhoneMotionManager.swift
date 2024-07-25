@@ -25,7 +25,7 @@ final class iPhoneMotionManager: MotionManager {
     }
     
     init() {
-        cmManager.deviceMotionUpdateInterval = 0.25
+        cmManager.deviceMotionUpdateInterval = motionSensitivity.iPhoneThreshold.motionUpdateInterval
         descendingThreshold = motionSensitivity.iPhoneThreshold.descending
         ascendingThreshold = motionSensitivity.iPhoneThreshold.ascending
         bottomThreshold = motionSensitivity.iPhoneThreshold.bottom

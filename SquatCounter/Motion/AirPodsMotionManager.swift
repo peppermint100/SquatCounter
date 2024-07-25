@@ -33,7 +33,7 @@ final class AirPodsMotionManager: MotionManager {
     
     func startMotionUpdates() {
         cmManager.startDeviceMotionUpdates()
-        timerCancellable = Timer.publish(every: 0.35, on: .current, in: .common)
+        timerCancellable = Timer.publish(every: motionSensitivity.airPodsThreshold.motionUpdateInterval, on: .current, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.fetchMotionData()
