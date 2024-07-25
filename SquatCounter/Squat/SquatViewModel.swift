@@ -8,46 +8,49 @@
 import Foundation
 import Combine
 import AVFoundation
+import UIKit
 
 final class SquatViewModel: ObservableObject {
     
     let motionManager: MotionManager
+    var device: Device
+    
     private var cancelBag = Set<AnyCancellable>()
+    
+    private var timerCancellable: AnyCancellable?
     private let startedTime = Date.now
     private var lastSqautTime = Date.now
+    private var duration: TimeInterval = 0
     
     let finishSquatTrigger = PassthroughSubject<SquatResult, Never>()
-    private var timerCancellable: AnyCancellable?
     
-    var device: Device
     @Published var squatPhase: SquatPhase = .idle
     @Published var isSquating = false
     @Published var squatCount = 0
+    var goal = UserDefaults.standard.integer(forKey: UserDefaultsKey.goal)
     
     @Published var sound = UserDefaults.standard.bool(forKey: UserDefaultsKey.sound)
     @Published var vibrate = UserDefaults.standard.bool(forKey: UserDefaultsKey.vibrate)
+    private var soundManagers = [SoundManager]()
     
     @Published var showAlert = false
     var alertValues = AlertValues.empty()
     
-    private var soundManagers = [SoundManager]()
-    private var duration: TimeInterval = 0
-    
-    var goal = UserDefaults.standard.integer(forKey: UserDefaultsKey.goal)
-    
     init(device: Device) {
         self.device = device
+        
         if device == .iPhone {
             self.motionManager = iPhoneMotionManager()
         } else {
             self.motionManager = AirPodsMotionManager()
         }
         self.motionManager.startMotionUpdates()
+        
         addSubscribers()
+        addObservers()
     }
     
     private func addSubscribers() {
-        
         $squatPhase.map {
             $0 == .descending || $0 == .bottom
         }.sink { [weak self] isSquating in
@@ -75,6 +78,21 @@ final class SquatViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.duration = output.timeIntervalSince(self.startedTime)
             }
+        
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)
+            .sink { [weak self] _ in
+                self?.stopMotion()
+            }
+            .store(in: &cancelBag)
+        
+        NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)
+            .sink { [weak self] _ in
+                self?.restartMotion()
+            }
+            .store(in: &cancelBag)
     }
     
     private func detectSquat(acceleration: Double) {
@@ -121,6 +139,10 @@ final class SquatViewModel: ObservableObject {
     func didTapFinishButton() {
         showAlert = true
         alertValues = AlertValues(title: R.string.localizable.confirmFinishWorkout(), message: "")
+        stopMotion()
+    }
+    
+    func stopMotion() {
         motionManager.stopMotionUpdates()
     }
     
