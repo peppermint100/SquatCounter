@@ -20,8 +20,8 @@ final class SquatViewModel: ObservableObject {
     private var timerCancellable: AnyCancellable?
     
     var device: Device
-    var squatPhase: SquatPhase = .idle
-    var isSquating = false
+    @Published var squatPhase: SquatPhase = .idle
+    @Published var isSquating = false
     @Published var squatCount = 0
     
     @Published var sound = UserDefaults.standard.bool(forKey: UserDefaultsKey.sound)
@@ -47,6 +47,14 @@ final class SquatViewModel: ObservableObject {
     }
     
     private func addSubscribers() {
+        
+        $squatPhase.map {
+            $0 == .descending || $0 == .bottom
+        }.sink { [weak self] isSquating in
+            self?.isSquating = isSquating
+        }
+        .store(in: &cancelBag)
+        
         motionManager.accelerationSubject.sink { [weak self] acceleration in
             self?.detectSquat(acceleration: acceleration)
         }
