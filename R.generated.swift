@@ -73,7 +73,7 @@ struct _R {
       var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
     }
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 53 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 58 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
 
@@ -168,6 +168,13 @@ struct _R {
       /// Locales: en, ko
       var confirmFinishWorkout: RswiftResources.StringResource { .init(key: "Confirm Finish Workout", tableName: "Localizable", source: source, developmentValue: "Would you like to finish your workout?", comment: nil) }
 
+      /// en translation: Contact Developer
+      ///
+      /// Key: Contact Developer
+      ///
+      /// Locales: en, ko
+      var contactDeveloper: RswiftResources.StringResource { .init(key: "Contact Developer", tableName: "Localizable", source: source, developmentValue: "Contact Developer", comment: nil) }
+
       /// en translation: Correct 1
       ///
       /// Key: Correct1
@@ -181,6 +188,20 @@ struct _R {
       ///
       /// Locales: en, ko
       var correct2: RswiftResources.StringResource { .init(key: "Correct2", tableName: "Localizable", source: source, developmentValue: "Correct 2", comment: nil) }
+
+      /// en translation: The Mail app is not installed on your iPhone. Please install the default Mail app or an email app such as Gmail, or send your inquiry to krpeppermint100@gmail.com.
+      ///
+      /// Key: Email App Does Not Exist
+      ///
+      /// Locales: en, ko
+      var emailAppDoesNotExist: RswiftResources.StringResource { .init(key: "Email App Does Not Exist", tableName: "Localizable", source: source, developmentValue: "The Mail app is not installed on your iPhone. Please install the default Mail app or an email app such as Gmail, or send your inquiry to krpeppermint100@gmail.com.", comment: nil) }
+
+      /// en translation: Etc
+      ///
+      /// Key: Etc
+      ///
+      /// Locales: en, ko
+      var etc: RswiftResources.StringResource { .init(key: "Etc", tableName: "Localizable", source: source, developmentValue: "Etc", comment: nil) }
 
       /// en translation: Finish
       ///
@@ -307,6 +328,20 @@ struct _R {
       ///
       /// Locales: en, ko
       var onboardingPermissionTitle: RswiftResources.StringResource { .init(key: "Onboarding Permission Title", tableName: "Localizable", source: source, developmentValue: "Please allow the following permissions to use the app.", comment: nil) }
+
+      /// en translation: Privacy Policy
+      ///
+      /// Key: Privacy Policy
+      ///
+      /// Locales: en, ko
+      var privacyPolicy: RswiftResources.StringResource { .init(key: "Privacy Policy", tableName: "Localizable", source: source, developmentValue: "Privacy Policy", comment: nil) }
+
+      /// en translation: This app does not collect any personal information.
+      ///
+      /// Key: Privacy Policy Description
+      ///
+      /// Locales: en, ko
+      var privacyPolicyDescription: RswiftResources.StringResource { .init(key: "Privacy Policy Description", tableName: "Localizable", source: source, developmentValue: "This app does not collect any personal information.", comment: nil) }
 
       /// en translation: Return
       ///

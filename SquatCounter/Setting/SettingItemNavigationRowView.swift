@@ -15,7 +15,6 @@ struct SettingItemNavigationRowView: View {
     var body: some View {
         HStack {
             Text(title)
-                .fontWeight(.medium)
                 .foregroundStyle(.black)
             Spacer()
             Text(selectedOption)

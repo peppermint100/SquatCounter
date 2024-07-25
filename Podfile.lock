@@ -1,16 +1,20 @@
 PODS:
+  - DeviceKit (5.4.0)
   - R.swift (7.3.2)
 
 DEPENDENCIES:
+  - DeviceKit
   - R.swift
 
 SPEC REPOS:
   trunk:
+    - DeviceKit
     - R.swift
 
 SPEC CHECKSUMS:
+  DeviceKit: bd34bb1766d926c3cc5a5f6e3e9a6dd10148b805
   R.swift: 0af0d882f49f03711415cb4e5215daa977d8a480
 
-PODFILE CHECKSUM: 8a9d3a89ff817ab1dae65fcb9ee6034e5f65a321
+PODFILE CHECKSUM: 392360c4ae2600432d52f291b3347bbffc24332d
 
 COCOAPODS: 1.14.3
