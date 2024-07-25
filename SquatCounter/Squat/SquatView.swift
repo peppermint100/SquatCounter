@@ -18,8 +18,12 @@ struct SquatView: View {
     
     var body: some View {
         ZStack {
-            R.color.backgroundColor.color
-                .ignoresSafeArea()
+            if vm.isSquating {
+                Color.black.ignoresSafeArea()
+            } else {
+                R.color.backgroundColor.color
+                    .ignoresSafeArea()
+            }
             GeometryReader { geo in
                 VStack {
                     let iconSize = geo.size.width * 0.08
@@ -32,6 +36,7 @@ struct SquatView: View {
                         Text("\(vm.squatCount) / \(vm.goal)")
                             .font(.largeTitle)
                             .fontWeight(Font.Weight.bold)
+                            .foregroundStyle(vm.isSquating ? .white : .black)
                     }
                     
                     Text(
@@ -48,10 +53,10 @@ struct SquatView: View {
                         vm.didTapFinishButton()
                     }, label: {
                         Text(R.string.localizable.finishWorkout)
-                            .borderedButton()
+                            .foregroundStyle(vm.isSquating ? .gray : .black)
+                            .borderedButton(disabled: vm.isSquating)
                             .frame(width: geo.size.width * 0.7, height: 40)
                             .padding()
-                        
                     })
                 }
             }
@@ -119,5 +124,6 @@ private extension SquatView {
                     }
             }
         }
+        .foregroundStyle(vm.isSquating ? .gray : .black)
     }
 }

@@ -15,6 +15,7 @@ final class AirPodsMotionManager: MotionManager {
     var descendingThreshold: Double
     var bottomThreshold: Double
     var ascendingThreshold: Double
+    var timeThreshhold: Double
     
     let accelerationSubject = PassthroughSubject<Double, Never>()
     private var timerCancellable: AnyCancellable?
@@ -25,6 +26,7 @@ final class AirPodsMotionManager: MotionManager {
         descendingThreshold = motionSensitivity.airPodsThreshold.descending
         ascendingThreshold = motionSensitivity.airPodsThreshold.ascending
         bottomThreshold = motionSensitivity.airPodsThreshold.bottom
+        timeThreshhold = motionSensitivity.iPhoneThreshold.minimumSquatTime
     }
     
     var isActive: Bool {
@@ -33,7 +35,7 @@ final class AirPodsMotionManager: MotionManager {
     
     func startMotionUpdates() {
         cmManager.startDeviceMotionUpdates()
-        timerCancellable = Timer.publish(every: 0.35, on: .current, in: .common)
+        timerCancellable = Timer.publish(every: motionSensitivity.airPodsThreshold.motionUpdateInterval, on: .current, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.fetchMotionData()

@@ -13,7 +13,7 @@ final class FinishViewModel: ObservableObject {
     let goal = UserDefaults.standard.integer(forKey: UserDefaultsKey.goal)
     
     var interval: String {
-        "\(TimeInterval(Double(result.count) / result.duration).formatAsPace())\""
+        "\(result.interval.formatAsPace())\""
     }
     
     var duration: String {
