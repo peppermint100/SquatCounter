@@ -14,6 +14,7 @@ final class SquatViewModel: ObservableObject {
     let motionManager: MotionManager
     private var cancelBag = Set<AnyCancellable>()
     private let startedTime = Date.now
+    private var lastSqautTime = Date.now
     
     let finishSquatTrigger = PassthroughSubject<SquatResult, Never>()
     private var timerCancellable: AnyCancellable?
@@ -78,6 +79,7 @@ final class SquatViewModel: ObservableObject {
         case .descending:
             if acceleration < motionManager.bottomThreshold {
                 squatPhase = .bottom
+                lastSqautTime = Date()
             }
         case .bottom:
             if acceleration > motionManager.ascendingThreshold {
@@ -87,7 +89,7 @@ final class SquatViewModel: ObservableObject {
                 squatPhase = .ascending
             }
         case .ascending:
-            if acceleration < motionManager.ascendingThreshold {
+            if acceleration < motionManager.ascendingThreshold && Date.now.timeIntervalSince(lastSqautTime) > motionManager.timeThreshhold {
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.squatPhase = .idle
