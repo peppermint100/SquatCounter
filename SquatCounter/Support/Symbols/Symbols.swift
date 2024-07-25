@@ -20,4 +20,5 @@ enum Symbols {
     static let chevronRight = Image(systemName: "chevron.right")
     static let chevronLeft = Image(systemName: "chevron.left")
     static let checkMark = Image(systemName: "checkmark")
+    static let envelop = Image(systemName: "envelope")
 }

@@ -11,6 +11,34 @@ import Combine
 final class SettingRouter: ObservableObject, Router {
     
     @Published var path = NavigationPath()
+    @Published var sheet: Sheet? = nil
+    
+    enum Sheet: String, Identifiable {
+        case contactDeveloper
+        case privacyPolicy
+        
+        var id: String {
+            self.rawValue
+        }
+    }
+    
+    func present(_ sheet: Sheet) {
+        self.sheet = sheet
+    }
+    
+    func dismissSheet() {
+        self.sheet = nil
+    }
+    
+    @ViewBuilder
+    func build(_ sheet: Sheet) -> some View {
+        switch sheet {
+        case .contactDeveloper:
+            ContactDeveloperView()
+        case .privacyPolicy:
+            PrivacyPolicyView()
+        }
+    }
     
     enum Page: Hashable {
         

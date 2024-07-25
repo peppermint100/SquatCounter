@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import DeviceKit
 
 final class SettingViewModel: ObservableObject {
     
@@ -16,6 +17,8 @@ final class SettingViewModel: ObservableObject {
     
     @Published var iPhoneMotionSensitivity = SettingManager.getiPhoneMotionSensitivity()
     @Published var airPodsMotionSensitivity = SettingManager.getAirPodsMotionSensitivity()
+    
+    let sheetPresentTrigger = PassthroughSubject<SettingRouter.Sheet, Never>()
     
     private var cancelBag = Set<AnyCancellable>()
     
@@ -49,5 +52,42 @@ final class SettingViewModel: ObservableObject {
             UserDefaults.standard.setValue($0.rawValue, forKey: UserDefaultsKey.airPodsMotionSensitivity)
         }
         .store(in: &cancelBag)
+    }
+    
+    func didTapContactDeveloper() {
+        if let mailtoURL = createMailtoURL() {
+            if UIApplication.shared.canOpenURL(mailtoURL) {
+                UIApplication.shared.open(mailtoURL)
+            } else {
+                sheetPresentTrigger.send(.contactDeveloper)
+            }
+        }
+    }
+    
+    func didTapPrivacyPolicy() {
+        sheetPresentTrigger.send(.privacyPolicy)
+    }
+}
+
+// MARK: Email
+extension SettingViewModel {
+    
+    func createMailtoURL() -> URL? {
+        let developerEmail = "krpeppermint100@gmail.com"
+        let subject = "Contact Email Support"
+        let urlString = "mailto:\(developerEmail)?subject=\(subject)&body=\(generateBody())"
+        return URL(string: urlString)
+    }
+    
+    func generateBody() -> String {
+        return String("""
+                Application Name: \(Bundle.main.displayName)
+                iOS: \(UIDevice.current.systemVersion)
+                Device Model: \(DeviceKit.Device.current)
+                App Version: \(Bundle.main.appVersion)
+                App Build: \(Bundle.main.appBuild)
+            --------------------------------------
+            """
+        )
     }
 }

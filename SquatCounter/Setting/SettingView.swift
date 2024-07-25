@@ -48,14 +48,49 @@ struct SettingView: View {
                                         router.push(.sensitivity(device: .airPods, motionSensitivity: $vm.airPodsMotionSensitivity))
                                     }
                             }
+                            
+                            VStack {
+                                sectionHeader(R.string.localizable.etc())
+                                
+                                Button(action: {vm.didTapPrivacyPolicy()}, label: {
+                                    HStack {
+                                        Text(R.string.localizable.privacyPolicy())
+                                            .foregroundStyle(.black)
+                                        Spacer()
+                                    }
+                                })
+                                .padding(.vertical, 5)
+                                
+                                Button(action: {
+                                    vm.didTapContactDeveloper()
+                                }, label: {
+                                    HStack {
+                                        Text(R.string.localizable.contactDeveloper())
+                                            .foregroundStyle(.black)
+                                        Spacer()
+                                        Symbols.envelop
+                                            .foregroundStyle(.gray)
+                                    }
+                                    .contentShape(Rectangle())
+                                })
+                                .padding(.vertical, 5)
+                            }
                         }
                         .padding()
                     }
                 }
             }
+            .sheet(item: $router.sheet, onDismiss: {
+                router.dismissSheet()
+            }, content: { sheet in
+                router.build(sheet)
+            })
             .navigationDestination(for: SettingRouter.Page.self) { page in
                 router.build(page)
             }
+            .onReceive(vm.sheetPresentTrigger, perform: { sheet in
+                router.present(sheet)
+            })
         }
     }
 }
@@ -65,7 +100,6 @@ private extension SettingView {
     var soundFeedback: some View {
         HStack {
             Text(R.string.localizable.soundFeedback)
-                .fontWeight(.medium)
                 .foregroundStyle(.black)
             Spacer()
             Toggle(isOn: $vm.sound, label: {})
@@ -76,7 +110,6 @@ private extension SettingView {
     var hapticFeedback: some View {
         HStack {
             Text(R.string.localizable.hapticFeedback)
-                .fontWeight(.medium)
                 .foregroundStyle(.black)
             Spacer()
             Toggle(isOn: $vm.vibrate, label: {})
