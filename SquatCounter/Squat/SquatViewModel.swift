@@ -115,14 +115,11 @@ final class SquatViewModel: ObservableObject {
                 squatPhase = .ascending
             }
         case .ascending:
-            if acceleration < motionManager.ascendingThreshold && Date.now.timeIntervalSince(lastSqautTime) > motionManager.timeThreshhold {
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.squatPhase = .idle
-                    self.squatCount += 1
-                    if self.sound {
-                        self.playSound()
-                    }
+            if Date.now.timeIntervalSince(lastSqautTime) > motionManager.timeThreshhold {
+                self.squatPhase = .idle
+                self.squatCount += 1
+                if self.sound {
+                    self.playSound()
                 }
             }
         }
