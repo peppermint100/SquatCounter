@@ -21,6 +21,7 @@ final class AirPodsMotionManager: MotionManager {
     private var timerCancellable: AnyCancellable?
     
     private let cmManager = CMHeadphoneMotionManager()
+    private let lowPassFilter = LowPassFilter(filterFactor: 0.1)
     
     init() {
         descendingThreshold = motionSensitivity.airPodsThreshold.descending
@@ -43,8 +44,9 @@ final class AirPodsMotionManager: MotionManager {
     }
     
     private func fetchMotionData() {
-        if let deviceMotion = cmManager.deviceMotion {
-            accelerationSubject.send(deviceMotion.userAcceleration.y)
+        if let motion = cmManager.deviceMotion {
+            let yAcceleration = lowPassFilter.filter(value: motion.userAcceleration.y)
+            accelerationSubject.send(yAcceleration)
         }
     }
     

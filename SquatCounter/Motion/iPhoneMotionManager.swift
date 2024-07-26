@@ -20,6 +20,7 @@ final class iPhoneMotionManager: MotionManager {
     let accelerationSubject = PassthroughSubject<Double, Never>()
     
     private let cmManager = CMMotionManager()
+    private let lowPassFilter = LowPassFilter(filterFactor: 0.1)
     
     var isActive: Bool {
         cmManager.isDeviceMotionActive
@@ -40,8 +41,11 @@ final class iPhoneMotionManager: MotionManager {
                 return
             }
             
-            if let motion = motion {
-                self?.accelerationSubject.send(motion.userAcceleration.y)
+            if
+                let motion = motion,
+                let yAcceleration = self?.lowPassFilter.filter(value: motion.userAcceleration.y)
+            {
+                self?.accelerationSubject.send(yAcceleration)
             }
         }
     }
