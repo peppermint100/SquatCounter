@@ -24,19 +24,11 @@ struct OnBoardingView: View {
                 VStack(spacing: 40) {
                     title
                     
-                    Divider()
-                    
                     OnBoardingItemRowView(
                         geo: geo,
                         image: Symbols.figureCooldown,
                         title: R.string.localizable.motionSensor(),
                         description: R.string.localizable.motionSensorDescription())
-                    
-                    OnBoardingItemRowView(
-                        geo: geo,
-                        image: Symbols.airpodsCaseWithSignal,
-                        title: R.string.localizable.bluetooth(),
-                        description: R.string.localizable.bluetoothPermissionDescription())
                     
                     Spacer()
                     

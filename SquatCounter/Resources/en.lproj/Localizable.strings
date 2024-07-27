@@ -8,7 +8,7 @@
 
 // Onboarding
 "Onboarding Permission Title" = "Please allow the following permissions to use the app.";
-"Motion Sensor" = "Motion Sensor";
+"Motion Sensor" = "Motion & Fitness";
 "Motion Sensor Description" = "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.";
 "Next" = "Next";
 "Bluetooth" = "Bluetooth";
@@ -75,3 +75,4 @@
 "Privacy Policy" = "Privacy Policy";
 "Privacy Policy Description" = "This app does not collect any personal information.";
 "Email App Does Not Exist" = "The Mail app is not installed on your iPhone. Please install the default Mail app or an email app such as Gmail, or send your inquiry to krpeppermint100@gmail.com.";
+"Open Source License" = "Open Source License";

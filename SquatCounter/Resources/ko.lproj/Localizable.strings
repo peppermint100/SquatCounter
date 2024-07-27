@@ -8,7 +8,7 @@
 
 // Onboarding
 "Onboarding Permission Title" = "앱 사용을 위해 아래 권한을 허용해주세요.";
-"Motion Sensor" = "모션 센서";
+"Motion Sensor" = "동작 및 피트니스 권한";
 "Motion Sensor Description" = "아이폰 또는 에어팟의 모션 센서로 운동량을 측정하기 위해 권한이 필요합니다.";
 "Next" = "다음";
 "Bluetooth" = "블루투스";
@@ -40,8 +40,8 @@
 
 // Finish
 "Return" = "돌아가기";
-"Interval" = "Interval";
-"Time" = "Time";
+"Interval" = "인터벌";
+"Time" = "시간";
 "Workout Result" = "운동 결과";
 
 // Setting
@@ -75,3 +75,4 @@
 "Privacy Policy" = "개인정보 처리방침";
 "Privacy Policy Description" = "이 앱은 개인정보를 수집하지 않습니다.";
 "Email App Does Not Exist" = "아이폰에 메일 앱이 설치되어 있지 않습니다. 아이폰 기본 메일 앱 혹은 Gmail과 같은 이메일 앱을 설치하거나 krpeppermint100@gmail.com으로 문의 내용을 보내주세요.";
+"Open Source License" = "오픈소스 라이선스";

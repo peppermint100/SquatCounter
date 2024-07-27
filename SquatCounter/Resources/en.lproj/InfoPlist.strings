@@ -7,4 +7,3 @@
 */
 
 "NSMotionUsageDescription" = "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.";
-"NSBluetoothAlwaysUsageDescription" = "Bluetooth permission is required for exercising with AirPods.";

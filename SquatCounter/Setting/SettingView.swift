@@ -62,6 +62,17 @@ struct SettingView: View {
                                 .padding(.vertical, 5)
                                 
                                 Button(action: {
+                                    vm.didTapOpenSourceLicense()
+                                }, label: {
+                                    HStack {
+                                        Text(R.string.localizable.openSourceLicense())
+                                            .foregroundStyle(.black)
+                                        Spacer()
+                                    }
+                                })
+                                .padding(.vertical, 5)
+                                
+                                Button(action: {
                                     vm.didTapContactDeveloper()
                                 }, label: {
                                     HStack {

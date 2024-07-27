@@ -24,40 +24,23 @@ struct SquatView: View {
                 R.color.backgroundColor.color
                     .ignoresSafeArea()
             }
+            
             GeometryReader { geo in
-                VStack {
-                    let iconSize = geo.size.width * 0.08
-                    
-                    navigationBar(iconSize: iconSize)
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Text("\(vm.squatCount) / \(vm.goal)")
-                            .font(.largeTitle)
-                            .fontWeight(Font.Weight.bold)
-                            .foregroundStyle(vm.isSquating ? .white : .black)
+                if vm.countDown > 0 {
+                    Text("\(vm.countDown)")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    VStack {
+                        let iconSize = geo.size.width * 0.08
+                        navigationBar(iconSize: iconSize)
+                        Spacer()
+                        count
+                        helperText
+                        Spacer()
+                        finishButton(geo: geo)
                     }
-                    
-                    Text(
-                        vm.device == .iPhone
-                        ? R.string.localizable.iPhoneMotionSensorDescription
-                        : R.string.localizable.airpodsMotionSensorDescription
-                    )
-                    .font(.headline)
-                    .foregroundStyle(.gray)
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        vm.didTapFinishButton()
-                    }, label: {
-                        Text(R.string.localizable.finishWorkout)
-                            .foregroundStyle(vm.isSquating ? .gray : .black)
-                            .borderedButton(disabled: vm.isSquating)
-                            .frame(width: geo.size.width * 0.7, height: 40)
-                            .padding()
-                    })
                 }
             }
             .padding(.horizontal)
@@ -71,7 +54,7 @@ struct SquatView: View {
                         vm.finishSquat()
                     }),
                     secondaryButton: .cancel({
-                        vm.restartMotion()
+                        vm.resumeMotion()
                     }))
             }
             .toolbar(.hidden, for: .navigationBar)
@@ -125,5 +108,37 @@ private extension SquatView {
             }
         }
         .foregroundStyle(vm.isSquating ? .gray : .black)
+    }
+    
+    var count: some View {
+        HStack {
+            Text("\(vm.squatCount) / \(vm.goal)")
+                .font(.largeTitle)
+                .fontWeight(Font.Weight.bold)
+                .foregroundStyle(vm.isSquating ? .white : .black)
+        }
+        
+    }
+    
+    var helperText: some View {
+        Text(
+            vm.device == .iPhone
+            ? R.string.localizable.iPhoneMotionSensorDescription
+            : R.string.localizable.airpodsMotionSensorDescription
+        )
+        .font(.headline)
+        .foregroundStyle(.gray)
+    }
+    
+    func finishButton(geo: GeometryProxy) -> some View {
+        Button(action: {
+            vm.didTapFinishButton()
+        }, label: {
+            Text(R.string.localizable.finishWorkout)
+                .foregroundStyle(vm.isSquating ? .gray : .black)
+                .borderedButton(disabled: vm.isSquating)
+                .frame(width: geo.size.width * 0.7, height: 40)
+                .padding()
+        })
     }
 }

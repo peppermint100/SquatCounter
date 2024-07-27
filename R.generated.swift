@@ -54,16 +54,9 @@ struct _R {
     }
 
 
-    /// This `_R.string.infoPlist` struct is generated, and contains static references to 2 localization keys.
+    /// This `_R.string.infoPlist` struct is generated, and contains static references to 1 localization keys.
     struct infoPlist {
       let source: RswiftResources.StringResource.Source
-
-      /// en translation: Bluetooth permission is required for exercising with AirPods.
-      ///
-      /// Key: NSBluetoothAlwaysUsageDescription
-      ///
-      /// Locales: en, ko
-      var nsBluetoothAlwaysUsageDescription: RswiftResources.StringResource { .init(key: "NSBluetoothAlwaysUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Bluetooth permission is required for exercising with AirPods.", comment: nil) }
 
       /// en translation: Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.
       ///
@@ -73,7 +66,7 @@ struct _R {
       var nsMotionUsageDescription: RswiftResources.StringResource { .init(key: "NSMotionUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.", comment: nil) }
     }
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 58 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 59 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
 
@@ -280,12 +273,12 @@ struct _R {
       /// Locales: en, ko
       var motion: RswiftResources.StringResource { .init(key: "Motion", tableName: "Localizable", source: source, developmentValue: "Motion", comment: nil) }
 
-      /// en translation: Motion Sensor
+      /// en translation: Motion & Fitness
       ///
       /// Key: Motion Sensor
       ///
       /// Locales: en, ko
-      var motionSensor: RswiftResources.StringResource { .init(key: "Motion Sensor", tableName: "Localizable", source: source, developmentValue: "Motion Sensor", comment: nil) }
+      var motionSensor: RswiftResources.StringResource { .init(key: "Motion Sensor", tableName: "Localizable", source: source, developmentValue: "Motion & Fitness", comment: nil) }
 
       /// en translation: Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.
       ///
@@ -328,6 +321,13 @@ struct _R {
       ///
       /// Locales: en, ko
       var onboardingPermissionTitle: RswiftResources.StringResource { .init(key: "Onboarding Permission Title", tableName: "Localizable", source: source, developmentValue: "Please allow the following permissions to use the app.", comment: nil) }
+
+      /// en translation: Open Source License
+      ///
+      /// Key: Open Source License
+      ///
+      /// Locales: en, ko
+      var openSourceLicense: RswiftResources.StringResource { .init(key: "Open Source License", tableName: "Localizable", source: source, developmentValue: "Open Source License", comment: nil) }
 
       /// en translation: Privacy Policy
       ///

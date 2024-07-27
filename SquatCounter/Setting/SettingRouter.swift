@@ -16,6 +16,7 @@ final class SettingRouter: ObservableObject, Router {
     enum Sheet: String, Identifiable {
         case contactDeveloper
         case privacyPolicy
+        case openSourceLicense
         
         var id: String {
             self.rawValue
@@ -37,6 +38,8 @@ final class SettingRouter: ObservableObject, Router {
             ContactDeveloperView()
         case .privacyPolicy:
             PrivacyPolicyView()
+        case .openSourceLicense:
+            OpenSourceLicenseView()
         }
     }
     
