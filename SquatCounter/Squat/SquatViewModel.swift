@@ -21,6 +21,7 @@ final class SquatViewModel: ObservableObject {
     private let startedTime = Date.now
     private var lastSqautTime = Date.now
     private var duration: TimeInterval = 0
+    @Published var countDown = 3
     
     let finishSquatTrigger = PassthroughSubject<SquatResult, Never>()
     
@@ -44,10 +45,23 @@ final class SquatViewModel: ObservableObject {
         } else {
             self.motionManager = AirPodsMotionManager()
         }
-        self.motionManager.startMotionUpdates()
         
-        addSubscribers()
-        addObservers()
+        startCountDown()
+    }
+    
+    private func startCountDown() {
+        timerCancellable = Timer.publish(every: 1.0, on: .current, in: .common).autoconnect()
+            .sink { [weak self] output in
+                guard let self = self else { return }
+                if self.countDown > 0 {
+                    self.countDown -= 1
+                } else {
+                    self.timerCancellable?.cancel()
+                    self.motionManager.startMotionUpdates()
+                    addSubscribers()
+                    addObservers()
+                }
+            }
     }
     
     private func addSubscribers() {
@@ -78,7 +92,6 @@ final class SquatViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.duration = output.timeIntervalSince(self.startedTime)
             }
-        
     }
     
     private func addObservers() {
@@ -90,7 +103,7 @@ final class SquatViewModel: ObservableObject {
         
         NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)
             .sink { [weak self] _ in
-                self?.restartMotion()
+                self?.resumeMotion()
             }
             .store(in: &cancelBag)
     }
@@ -142,7 +155,7 @@ final class SquatViewModel: ObservableObject {
         motionManager.stopMotionUpdates()
     }
     
-    func restartMotion() {
+    func resumeMotion() {
         motionManager.startMotionUpdates()
     }
     

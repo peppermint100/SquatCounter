@@ -24,8 +24,6 @@ struct OnBoardingView: View {
                 VStack(spacing: 40) {
                     title
                     
-                    Divider()
-                    
                     OnBoardingItemRowView(
                         geo: geo,
                         image: Symbols.figureCooldown,

@@ -54,16 +54,9 @@ struct _R {
     }
 
 
-    /// This `_R.string.infoPlist` struct is generated, and contains static references to 2 localization keys.
+    /// This `_R.string.infoPlist` struct is generated, and contains static references to 1 localization keys.
     struct infoPlist {
       let source: RswiftResources.StringResource.Source
-
-      /// en translation: Bluetooth permission is required for exercising with AirPods.
-      ///
-      /// Key: NSBluetoothAlwaysUsageDescription
-      ///
-      /// Locales: en, ko
-      var nsBluetoothAlwaysUsageDescription: RswiftResources.StringResource { .init(key: "NSBluetoothAlwaysUsageDescription", tableName: "InfoPlist", source: source, developmentValue: "Bluetooth permission is required for exercising with AirPods.", comment: nil) }
 
       /// en translation: Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.
       ///
