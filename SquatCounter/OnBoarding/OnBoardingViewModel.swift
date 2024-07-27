@@ -14,9 +14,7 @@ final class OnBoardingViewModel: ObservableObject {
     
     func nextButtonTapped() {
         let cmManager = CoreMotionManager()
-        let cbManager = BluetoothManager()
         cmManager.requestPermission()
-        cbManager.requestPermission()
         nextButtonSubject.send()
     }
 }

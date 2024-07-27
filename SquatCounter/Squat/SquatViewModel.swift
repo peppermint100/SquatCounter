@@ -96,7 +96,6 @@ final class SquatViewModel: ObservableObject {
     }
     
     private func detectSquat(acceleration: Double) {
-        print(acceleration, " ", squatPhase)
         switch squatPhase {
         case .idle:
             if acceleration < motionManager.descendingThreshold {

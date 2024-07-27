@@ -32,12 +32,6 @@ struct OnBoardingView: View {
                         title: R.string.localizable.motionSensor(),
                         description: R.string.localizable.motionSensorDescription())
                     
-                    OnBoardingItemRowView(
-                        geo: geo,
-                        image: Symbols.airpodsCaseWithSignal,
-                        title: R.string.localizable.bluetooth(),
-                        description: R.string.localizable.bluetoothPermissionDescription())
-                    
                     Spacer()
                     
                     nextButton(geo: geo)

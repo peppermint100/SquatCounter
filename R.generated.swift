@@ -280,12 +280,12 @@ struct _R {
       /// Locales: en, ko
       var motion: RswiftResources.StringResource { .init(key: "Motion", tableName: "Localizable", source: source, developmentValue: "Motion", comment: nil) }
 
-      /// en translation: Motion Sensor
+      /// en translation: Motion & Fitness
       ///
       /// Key: Motion Sensor
       ///
       /// Locales: en, ko
-      var motionSensor: RswiftResources.StringResource { .init(key: "Motion Sensor", tableName: "Localizable", source: source, developmentValue: "Motion Sensor", comment: nil) }
+      var motionSensor: RswiftResources.StringResource { .init(key: "Motion Sensor", tableName: "Localizable", source: source, developmentValue: "Motion & Fitness", comment: nil) }
 
       /// en translation: Permission is required to measure exercise using the motion sensor of the iPhone or AirPods.
       ///
