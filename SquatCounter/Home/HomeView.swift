@@ -105,9 +105,7 @@ private extension HomeView {
                     device: device,
                     isSelected: vm.selectedDevice == device)
                 .onTapGesture {
-                    withAnimation(.easeInOut) {
-                        vm.switchDeivce(to: device)
-                    }
+                    vm.switchDeivce(to: device)
                 }
             }
         }

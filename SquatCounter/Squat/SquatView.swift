@@ -25,7 +25,6 @@ struct SquatView: View {
                     .ignoresSafeArea()
             }
             
-            
             GeometryReader { geo in
                 if vm.countDown > 0 {
                     Text("\(vm.countDown)")
