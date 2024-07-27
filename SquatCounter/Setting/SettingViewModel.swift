@@ -67,6 +67,10 @@ final class SettingViewModel: ObservableObject {
     func didTapPrivacyPolicy() {
         sheetPresentTrigger.send(.privacyPolicy)
     }
+    
+    func didTapOpenSourceLicense() {
+        sheetPresentTrigger.send(.openSourceLicense)
+    }
 }
 
 // MARK: Email
