@@ -7,14 +7,18 @@
 
 import Foundation
 import Combine
+import CoreMotion
 
 final class OnBoardingViewModel: ObservableObject {
     
     var nextButtonSubject = PassthroughSubject<Void, Never>()
     
     func nextButtonTapped() {
-        let cmManager = CoreMotionManager()
-        cmManager.requestPermission()
+        let manager = CMMotionActivityManager()
+        manager.startActivityUpdates(to: .main) { _ in
+            return
+        }
+        manager.stopActivityUpdates()
         nextButtonSubject.send()
     }
 }
